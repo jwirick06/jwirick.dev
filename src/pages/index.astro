@@ -1,11 +1,99 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout title="Jonathan Wirick - CS Student & Homelabber">
+  <!-- Hero Section -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
+    <div class="max-w-3xl">
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+        Hi, I'm Jonathan. <br class="hidden sm:block" />
+        <span class="text-blue-600">I build systems and software.</span>
+      </h1>
+      <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+        I'm a Computer Information Systems student at Okanagan College. 
+        When I'm not studying Java or C#, I'm managing my <strong>Homelab</strong>, 
+        configuring Linux containers, and exploring the world of self-hosting.
+      </p>
+      
+      <div class="flex flex-wrap gap-4">
+        <a 
+          href="/projects" 
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+        >
+          View My Projects
+        </a>
+        <a 
+          href="/resume" 
+          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm"
+        >
+          See My Resume
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-slate-50 border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <h2 class="text-2xl font-bold text-slate-900 mb-10">Technical Toolkit</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Card 1: Development -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Development</h3>
+          <p class="text-slate-500 text-sm mb-10 h-12">
+            Building robust applications with modern languages and rigorous database design.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Java</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">C#</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">PHP</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">JavaScript</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">PostgreSQL</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Oracle SQL</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Infrastructure -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Infrastructure</h3>
+          <p class="text-slate-500 text-sm mb-10 h-12">
+            Managing virtualized environments, containers, and network security.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Proxmox VE</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Docker</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Linux (Debian)</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Nginx</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Networking</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Workflow -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-4">Tools & Workflow</h3>
+          <p class="text-slate-500 text-sm mb-10 h-12">
+             The software and practices I use to maintain code quality and organization.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Git & GitHub</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">VS Code</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Portainer</span>
+            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Draw.io</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</MainLayout>

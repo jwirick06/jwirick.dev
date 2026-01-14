@@ -1,0 +1,94 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+// Project Data
+const homelabServices = [
+  { name: "Proxmox Cluster", desc: "The core of my lab. Manages LXC containers and VMs for development and production." },
+  { name: "Docker Compose", desc: "Orchestration for microservices including web servers and internal tools." }
+];
+
+const codingProjects = [
+  {
+    title: "SteadyPlan",
+    tags: ["PHP", "PostgreSQL", "REST API", "Database Design"],
+    description: "Engineered the backend for a Kanban-style project management application using PHP and PostgreSQL. Architected the database to handle task reordering and team collaboration, and developed a secure API consumed by the frontend.",
+    link: "https://github.com/Rkovl/SteadyPlan"
+  },
+  {
+    title: "Bracket Bets",
+    tags: ["Javascript", "REST API", "Asynchronous Programming", "Frontend"],
+    description: "Developed a client-side prediction game that consumes a third-party REST API to retrieve historical tournament data. Implemented logic to parse complex JSON brackets and render a simplified Top 8 guessing interface.",
+    link: "https://github.com/Rkovl/BracketBets"
+  }
+];
+---
+
+<MainLayout title="Projects | Jonathan Wirick">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold text-slate-900 mb-4">My Projects</h1>
+    <p class="text-xl text-slate-600 mb-12 max-w-2xl">
+      A collection of my academic coursework, personal coding projects, and the self-hosted infrastructure I maintain at home.
+    </p>
+
+    <!-- SECTION 1: HOMELAB -->
+    <div class="mb-16">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="p-2 bg-blue-100 rounded-lg text-blue-600">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900">Homelab Infrastructure</h2>
+      </div>
+
+      <!-- Network/Infrastructure Card -->
+      <div class="bg-slate-900 text-slate-300 rounded-xl p-6 sm:p-8 shadow-xl">
+        <h3 class="text-xl font-bold text-white mb-4">The Stack</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {homelabServices.map((service) => (
+            <div class="border border-slate-700 rounded-lg p-4 hover:bg-slate-800 transition-colors">
+              <h4 class="font-bold text-blue-400 mb-1">{service.name}</h4>
+              <p class="text-sm">{service.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-6 pt-6 border-t border-slate-700">
+          <p class="text-sm italic">
+            Hardware: Running on a dedicated bare-metal server with 32GB RAM, utilizing ZFS for storage reliability.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: CODING PROJECTS -->
+    <div>
+      <div class="flex items-center gap-3 mb-6">
+        <div class="p-2 bg-purple-100 rounded-lg text-purple-600">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-900">Software Development</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {codingProjects.map((project) => (
+          <div class="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{project.title}</h3>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.tags.map((tag) => (
+                <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+              {project.description}
+            </p>
+            <a href={project.link} class="text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1">
+              View Code 
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</MainLayout>

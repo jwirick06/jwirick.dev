@@ -1,0 +1,109 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Professional Resume" } = Astro.props;
+
+// Updated with your specific details
+const personalInfo = {
+  name: "Jonathan Wirick",
+  role: "Student",
+  socials: {
+    github: "https://github.com/jwirick06",
+    linkedin: "https://www.linkedin.com/in/jonathan-wirick-6a657b34b/",
+    email: "mailto:jwirick06@gmail.com",
+  },
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col">
+    
+    <!-- 
+      HEADER 
+      Hidden when printing
+    -->
+    <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur border-b border-slate-200 print:hidden">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <!-- Brand / Name -->
+        <a href="/" class="flex flex-col group">
+          <span class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+            {personalInfo.name}
+          </span>
+          <span class="text-xs text-slate-500 font-medium tracking-wide uppercase">
+            {personalInfo.role}
+          </span>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="flex items-center gap-6">
+          <a href="/" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors hidden sm:block">
+            Home
+          </a>
+          
+          <!-- 
+            Dynamic "Download" Button 
+            This triggers the browser print dialog so users can "Save as PDF"
+            without you needing to manually generate a file.
+          -->
+          <button 
+            onclick="window.print()" 
+            class="inline-flex items-center gap-2 bg-slate-900 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            <span>Save as PDF</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" x2="12" y1="15" y2="3"/>
+            </svg>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 
+      MAIN CONTENT 
+    -->
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 print:p-0 print:max-w-none">
+      <slot />
+    </main>
+
+    <!-- 
+      FOOTER 
+    -->
+    <footer class="bg-white border-t border-slate-200 mt-auto print:hidden">
+      <div class="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-slate-500">
+          © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+        </p>
+        
+        <div class="flex items-center gap-6">
+          <a href={personalInfo.socials.github} target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-900 transition-colors">
+            <span class="sr-only">GitHub</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href={personalInfo.socials.linkedin} target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-blue-700 transition-colors">
+            <span class="sr-only">LinkedIn</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href={personalInfo.socials.email} class="text-slate-400 hover:text-red-500 transition-colors">
+            <span class="sr-only">Email</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
