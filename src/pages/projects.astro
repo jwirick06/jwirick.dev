@@ -4,20 +4,22 @@ import MainLayout from '../layouts/MainLayout.astro';
 // Project Data
 const homelabServices = [
   { name: "Proxmox Cluster", desc: "The core of my lab. Manages LXC containers and VMs for development and production." },
-  { name: "Docker Compose", desc: "Orchestration for microservices including web servers and internal tools." }
+  { name: "Docker Compose", desc: "Orchestration for microservices including web servers and internal tools." },
+  { name: "Media Streaming Pipeline", desc: "Automated media delivery stack (Jellyfin) with hardware-accelerated transcoding and ZFS-backed persistent storage."},
+  { name: "Tailscale VPN", desc: "Secure remote access solution built on WireGuard. Enables encrypted management of internal services without exposing public firewall ports."}
 ];
 
 const codingProjects = [
   {
     title: "SteadyPlan",
-    tags: ["PHP", "PostgreSQL", "REST API", "Database Design", "MVC"],
+    tags: ["PHP", "PostgreSQL", "REST API", "Database Design", "MVC", "User Authentication (Session)"],
     description: "Engineered the backend for a Kanban-style project management application using PHP and PostgreSQL. Architected the database to handle task reordering and team collaboration, and developed a secure API consumed by the frontend.",
     link: "https://github.com/Rkovl/SteadyPlan"
   },
   {
     title: "Bracket Bets",
-    tags: ["Javascript", "REST API", "Asynchronous Programming", "Frontend"],
-    description: "Developed a client-side prediction game that consumes a third-party REST API to retrieve historical tournament data. Implemented logic to parse complex JSON brackets and render a simplified Top 8 guessing interface.",
+    tags: ["Javascript", "JSON Data Parsing", "GraphQL", "Asynchronous Programming", "Frontend"],
+    description: "Developed a client-side prediction game that consumes a third-party GraphQL API to retrieve historical tournament data. Implemented logic to parse complex JSON brackets and render a simplified Top 8 guessing interface.",
     link: "https://github.com/Rkovl/BracketBets"
   }
 ];
@@ -52,7 +54,7 @@ const codingProjects = [
         </div>
         <div class="mt-6 pt-6 border-t border-slate-700">
           <p class="text-sm italic">
-            Hardware: Running on a dedicated bare-metal server with 32GB RAM, utilizing ZFS for storage reliability.
+            Hardware: Running on a dedicated bare-metal server with 32GB RAM, utilizing ZFS on a 5TB DAS for storage reliability.
           </p>
         </div>
       </div>
