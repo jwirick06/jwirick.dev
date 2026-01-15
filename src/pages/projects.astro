@@ -42,16 +42,22 @@ const codingProjects = [
       </div>
 
       <!-- Network/Infrastructure Card -->
-      <div class="bg-slate-900 text-slate-300 rounded-xl p-6 sm:p-8 shadow-xl">
-        <h3 class="text-xl font-bold text-white mb-4">The Stack</h3>
+      <div class="bg-blue-50 text-slate-600 rounded-xl p-6 sm:p-8 shadow-xl">
+        <h3 class="text-xl font-bold text-slate-900 mb-4">The Stack</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {homelabServices.map((service) => (
-            <div class="border border-slate-700 rounded-lg p-4 hover:bg-slate-800 transition-colors">
-              <h4 class="font-bold text-blue-400 mb-1">{service.name}</h4>
-              <p class="text-sm">{service.desc}</p>
+            <div class="relative overflow-hidden
+                        border border-slate-300 rounded-lg p-4 bg-white
+                        transition-all duration-300 ease-out
+                        hover:scale-105 hover:shadow-2xl hover:border-blue-500 hover:-translate-y-1 hover:z-10 hover:bg-blue-100
+            ">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-50 rounded-full blur-2xl opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+                <h4 class="relative font-bold text-blue-600 mb-2 text-lg">{service.name}</h4>
+                <p class="relative text-sm text-slate-600 leading-relaxed">{service.desc}</p>
             </div>
           ))}
         </div>
+
         <div class="mt-6 pt-6 border-t border-slate-700">
           <p class="text-sm italic">
             Hardware: Running on a dedicated bare-metal server with 32GB RAM, utilizing ZFS on a 5TB DAS for storage reliability.
