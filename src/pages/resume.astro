@@ -2,17 +2,20 @@
 import MainLayout from '../layouts/MainLayout.astro';
 
 const skills = [
-  "Java", 
-  "JavaScript", 
-  "C#", 
-  "PHP", 
-  "PostgreSQL", 
-  "Oracle SQL", 
+  "Java",
+  "C#",
+  "PHP",
+  "SQL/PLSQL",
   "Linux", 
-  "Docker", 
-  "Proxmox", 
+  "Docker",
   "Virtualization",
-  "Network Management"
+  "Git",
+  "REST APIs",
+  "System Design",
+  "Database Design",
+  "Network Management",
+  "Agile Methodologies",
+  "Problem Solving"
 ];
 
 const experiences = [
@@ -27,6 +30,12 @@ const experiences = [
     company: "Academic & Personal Projects",
     period: "2024 - Present",
     description: "Building full-stack applications to practice PHP and C#. Currently exploring database optimization, REST APIs, and secure authentication patterns."
+  },
+  {
+    role: "Team Member",
+    company: "Group Project - SteadyPlan",
+    period: "Fall 2025",
+    description: "Collaborated with 3 classmates to build a kanban-style task management web application. Responsible for backend system and database design, as well as the implementation of both. Used PostgreSQL and PHP, and practiced Agile methodology with weekly standups."
   }
 ];
 ---
@@ -36,6 +45,71 @@ const experiences = [
     @media print {
       header, footer { display: none !important; }
       main { margin: 0 !important; padding: 0 !important; }
+
+      .max-w-4xl {
+        padding: 0.5rem !important;
+      }
+
+      section {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .space-y-10 > * + * {
+        margin-top: 1.5rem !important;
+      }
+
+      .space-y-8 > * + * {
+        margin-top: 1rem !important;
+      }
+
+      .mb-12 {
+        margin-bottom: 1.5rem !important;
+      }
+
+      .pb-8 {
+        padding-bottom: 1rem !important;
+      }
+
+      .mb-4 {
+        margin-bottom: 0.75rem !important;
+      }
+
+      .mb-6 {
+        margin-bottom: 1rem !important;
+      }
+
+      h1 {
+        font-size: 1.875rem !important;
+        margin-bottom: 0.25rem !important;
+      }
+
+      p.text-xl {
+        font-size: 1.125rem !important;
+        margin-bottom: 1rem !important;
+      }
+
+      h2.text-xl {
+        font-size: 1.125rem !important;
+        padding-bottom: 0.5rem !important;
+      }
+
+      .space-y-8 > div {
+        margin-top: 0.75rem !important;
+      }
+
+      .space-y-8 > div:first-child {
+        margin-top: 0 !important;
+      }
+
+      .flex-wrap.gap-2 {
+        gap: 0.375rem !important;
+      }
+
+      .px-3.py-1 {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.75rem !important;
+      }
     }
   </style>
 
