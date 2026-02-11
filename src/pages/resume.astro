@@ -2,23 +2,29 @@
 import MainLayout from '../layouts/MainLayout.astro';
 
 const skills = [
+  // Languages
   "Java",
   "C#",
   "PHP",
   "SQL/PLSQL",
   "HTML/CSS",
-  "Javascript",
-  "Linux", 
-  "Docker",
-  "Virtualization",
-  "Git",
+  "JavaScript",
+
+  // Tools & Technologies
+  "Linux (Ubuntu/Debian)",
+  "Docker & Docker Compose",
+  "Proxmox VE",
+  "Git & GitHub",
+  "PostgreSQL",
   "REST APIs",
+
+  // Concepts & Practices
   "System Design",
   "Database Design",
   "Unit Testing",
-  "Network Management",
-  "Agile Methodologies",
-  "Problem Solving"
+  "Test-Driven Development",
+  "Agile/Scrum",
+  "CI/CD Pipelines"
 ];
 
 const experiences = [
@@ -26,19 +32,19 @@ const experiences = [
     role: "Home Server Administrator",
     company: "Personal Homelab",
     period: "2024 - Present",
-    description: "Architected a virtualized server environment using Proxmox VE to manage Linux VMs and LXC containers. Deployed and maintained self-hosted services using Docker and Docker Compose. Gained hands-on experience in Linux system administration (Ubuntu/Debian), network security, and resource monitoring."
+    description: "Architected and maintain a virtualized infrastructure using Proxmox VE, managing 3 Linux VMs and 15+ Docker containers with near 100% uptime. Implemented automated backup solutions, configured reverse proxy with SSL certificates, and established monitoring dashboards for system health and resource utilization."
   },
   {
-    role: "Student Developer",
+    role: "Full-Stack Developer",
     company: "Academic & Personal Projects",
     period: "2024 - Present",
-    description: "Building full-stack applications to practice PHP and C#. Currently exploring database optimization, REST APIs, and secure authentication patterns."
+    description: "Designed and developed web applications using PHP, JavaScript, and PostgreSQL. Built RESTful APIs with proper error handling, implemented secure authentication using session management and password hashing, and optimized database queries through indexing and query analysis."
   },
   {
-    role: "Team Member",
-    company: "Group Project - SteadyPlan",
+    role: "Backend Developer",
+    company: "SteadyPlan - Team Project",
     period: "Fall 2025",
-    description: "Collaborated with 3 classmates to build a kanban-style task management web application. Responsible for backend system and database design, as well as the implementation of both. Used PostgreSQL and PHP, and practiced Agile methodology with weekly standups."
+    description: "Led backend development in a team of 4, designing the PostgreSQL database schema and implementing RESTful APIs in PHP. Facilitated Agile practices including weekly standups and sprint planning, resulting in on-time delivery of all planned features. Integrated drag-and-drop task management with real-time database updates."
   }
 ];
 ---
@@ -46,11 +52,28 @@ const experiences = [
 <MainLayout title="Jonathan Wirick - Resume">
   <style is:inline>
     @media print {
+      @page {
+        margin: 0.45in 0.55in;
+        size: letter;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
       header, footer { display: none !important; }
       main { margin: 0 !important; padding: 0 !important; }
 
+      body {
+        font-size: 10.5pt !important;
+        line-height: 1.4 !important;
+      }
+
       .max-w-4xl {
-        padding: 0.5rem !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
 
       section {
@@ -59,46 +82,65 @@ const experiences = [
       }
 
       .space-y-10 > * + * {
-        margin-top: 1.5rem !important;
-      }
-
-      .space-y-8 > * + * {
         margin-top: 1rem !important;
       }
 
+      .space-y-8 > * + * {
+        margin-top: 0.65rem !important;
+      }
+
+      .gap-8 {
+        gap: 1.2rem !important;
+      }
+
       .mb-12 {
-        margin-bottom: 1.5rem !important;
+        margin-bottom: 0.85rem !important;
       }
 
       .pb-8 {
-        padding-bottom: 1rem !important;
+        padding-bottom: 0.6rem !important;
       }
 
       .mb-4 {
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.6rem !important;
       }
 
       .mb-6 {
-        margin-bottom: 1rem !important;
+        margin-bottom: 0.6rem !important;
+      }
+
+      .mb-2 {
+        margin-bottom: 0.3rem !important;
+      }
+
+      .mb-1 {
+        margin-bottom: 0.2rem !important;
       }
 
       h1 {
-        font-size: 1.875rem !important;
+        font-size: 1.75rem !important;
         margin-bottom: 0.25rem !important;
+        line-height: 1.2 !important;
       }
 
       p.text-xl {
-        font-size: 1.125rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 1.05rem !important;
+        margin-bottom: 0.6rem !important;
+        line-height: 1.3 !important;
       }
 
       h2.text-xl {
-        font-size: 1.125rem !important;
-        padding-bottom: 0.5rem !important;
+        font-size: 1.1rem !important;
+        padding-bottom: 0.4rem !important;
+        margin-bottom: 0.6rem !important;
+      }
+
+      h3 {
+        font-size: 1rem !important;
       }
 
       .space-y-8 > div {
-        margin-top: 0.75rem !important;
+        margin-top: 0.65rem !important;
       }
 
       .space-y-8 > div:first-child {
@@ -106,12 +148,35 @@ const experiences = [
       }
 
       .flex-wrap.gap-2 {
-        gap: 0.375rem !important;
+        gap: 0.3rem !important;
+        row-gap: 0.3rem !important;
       }
 
       .px-3.py-1 {
-        padding: 0.25rem 0.5rem !important;
-        font-size: 0.75rem !important;
+        padding: 0.2rem 0.5rem !important;
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+      }
+
+      .leading-relaxed {
+        line-height: 1.45 !important;
+      }
+
+      .text-sm {
+        font-size: 0.85rem !important;
+      }
+
+      .flex.flex-wrap.gap-4 {
+        gap: 0.85rem !important;
+      }
+
+      .w-4.h-4 {
+        width: 0.95rem !important;
+        height: 0.95rem !important;
+      }
+
+      aside .space-y-8 > * + * {
+        margin-top: 0.85rem !important;
       }
     }
   </style>
@@ -134,11 +199,11 @@ const experiences = [
       </button>
     </div>
 
-    <!-- Resume Header (Print Friendly) -->
+    <!-- Resume Header -->
     <div class="mb-12 border-b border-slate-200 pb-8">
       <h1 class="text-4xl font-bold text-slate-900 mb-2">Jonathan Wirick</h1>
-      <p class="text-xl text-slate-600 mb-6">Computer Information Systems Student & Homelab Enthusiast</p>
-      
+      <p class="text-xl text-slate-600 mb-6">CIS Student | Full-Stack Developer | Infrastructure Enthusiast</p>
+
       <div class="flex flex-wrap gap-4 text-sm text-slate-500">
         <div class="flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -206,7 +271,7 @@ const experiences = [
         <section class="print:hidden">
           <h2 class="text-xl font-bold text-slate-900 border-b-2 border-slate-900 pb-2 mb-4">Connect</h2>
           <p class="text-slate-600 text-sm mb-4">
-            I'm currently seeking internships and entry-level opportunities.
+            I'm currently seeking co-op and internship opportunities for Summer 2026.
           </p>
           <a href="mailto:jwirick06@gmail.com" class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">
             Contact Me
