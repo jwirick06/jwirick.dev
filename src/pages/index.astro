@@ -1,37 +1,155 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import headshot from '../assets/headshot.jpg';
 ---
 
 <MainLayout title="Jonathan Wirick - CS Student & Homelabber">
   <!-- Hero Section -->
-  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
-    <div class="max-w-3xl">
-      <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
-        Hi, I'm Jonathan. <br class="hidden sm:block" />
-        <span class="text-blue-600">I build systems and software.</span>
-      </h1>
-      <p class="text-xl text-slate-600 mb-8 leading-relaxed">
-        I'm a Computer Information Systems student at Okanagan College. 
-        When I'm not studying Java or C#, I'm managing my <strong>Homelab</strong>, 
-        configuring Linux containers, and exploring the world of self-hosting.
-      </p>
-      
-      <div class="flex flex-wrap gap-4">
-        <a 
-          href="/projects" 
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
-        >
-          View My Projects
-        </a>
-        <a 
-          href="/resume" 
-          class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-sm"
-        >
-          See My Resume
-        </a>
+  <section class="relative overflow-hidden">
+    <!-- Animated gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 opacity-70"></div>
+    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+      <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <!-- Profile Image with floating animation -->
+        <div class="flex-shrink-0 animate-float">
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl blur-2xl opacity-20 animate-pulse"></div>
+            <div class="relative w-48 h-48 sm:w-64 sm:h-64 rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/50">
+              <Image
+                src={headshot}
+                alt="Jonathan Wirick"
+                class="w-full h-full object-cover"
+                loading="eager"
+                quality={90}
+                widths={[192, 256, 384, 512]}
+                sizes="(max-width: 640px) 192px, 256px"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="flex-1 max-w-2xl">
+          <div class="inline-block mb-4 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium animate-bounce-slow">
+            👋 Available for opportunities
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+            Hi, I'm <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Jonathan</span>
+            <br />
+            <span class="text-slate-700">I build </span>
+            <span class="inline-block min-w-[280px] sm:min-w-[320px]">
+              <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-x typing-text">systems & software</span>
+              <span class="typing-cursor">|</span>
+            </span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed">
+            Computer Information Systems student at <strong class="text-slate-800">Okanagan College</strong>.
+            Passionate about <strong class="text-blue-600">homelab infrastructure</strong>,
+            Linux containers, and self-hosting solutions. Currently exploring
+            <strong class="text-purple-600">Java</strong> and <strong class="text-purple-600">C#</strong> development.
+          </p>
+
+          <!-- CTA Buttons with enhanced styling -->
+          <div class="flex flex-wrap gap-4 mb-8">
+            <a
+              href="/projects"
+              class="group inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform"
+            >
+              View My Projects
+              <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a
+              href="/resume"
+              class="group inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-slate-700 bg-white border-2 border-slate-200 rounded-lg hover:border-blue-300 hover:bg-slate-50 transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 transform"
+            >
+              See My Resume
+              <svg class="ml-2 w-5 h-5 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Social links / Quick stats -->
+          <div class="flex flex-wrap items-center gap-6 text-sm text-slate-600">
+            <a href="https://github.com/jwirick" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-blue-600 transition-colors group">
+              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span>Open to collaboration</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <style>
+    @keyframes blob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes gradient-x {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+
+    .animation-delay-4000 {
+      animation-delay: 4s;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-bounce-slow {
+      animation: bounce 3s infinite;
+    }
+
+    .animate-gradient-x {
+      background-size: 200% auto;
+      animation: gradient-x 3s linear infinite;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+      font-weight: 300;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
 
   <section class="bg-slate-50 border-t border-slate-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
