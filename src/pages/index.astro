@@ -5,14 +5,14 @@ import headshot from '../assets/headshot.jpg';
 ---
 
 <MainLayout title="Jonathan Wirick - CS Student & Homelabber">
-  <!-- Hero Section -->
+  <!-- Animated gradient background spanning entire section -->
   <section class="relative overflow-hidden">
-    <!-- Animated gradient background -->
     <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 opacity-70"></div>
     <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
     <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
 
+    <!-- Hero Image -->
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
       <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         <!-- Profile Image with floating animation -->
@@ -33,7 +33,7 @@ import headshot from '../assets/headshot.jpg';
           </div>
         </div>
 
-        <!-- Content -->
+        <!-- Hero Section -->
         <div class="flex-1 max-w-2xl">
           <div class="inline-block mb-4 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium animate-bounce-slow">
             👋 Available for co-op/job opportunities
@@ -42,7 +42,7 @@ import headshot from '../assets/headshot.jpg';
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
             Hi, I'm <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Jonathan</span>
             <br />
-            <span class="text-slate-700">I build </span>
+            <span class="text-slate-900">I build </span>
             <span class="inline-block min-w-[280px] sm:min-w-[320px]">
               <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-x typing-text">systems & software</span>
               <span class="typing-cursor">|</span>
@@ -52,8 +52,8 @@ import headshot from '../assets/headshot.jpg';
           <p class="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed">
             Computer Information Systems student at <strong class="text-slate-800">Okanagan College</strong>.
             Passionate about <strong class="text-blue-600">homelab infrastructure</strong>,
-            Linux containers, and self-hosting solutions. Currently exploring
-            <strong class="text-purple-600">Java</strong> and <strong class="text-purple-600">C#</strong> development.
+            Linux containers, and self-hosting solutions. Proficient in
+            <strong class="text-purple-600">Java</strong> and <strong class="text-purple-600">PHP</strong> development.
           </p>
 
           <!-- CTA Buttons with enhanced styling -->
@@ -94,65 +94,63 @@ import headshot from '../assets/headshot.jpg';
         </div>
       </div>
     </div>
-  </section>
 
-  <style>
-    @keyframes blob {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -50px) scale(1.1); }
-      66% { transform: translate(-20px, 20px) scale(0.9); }
-    }
+    <!-- About Me Section -->
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+          About <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Me</span>
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
+      </div>
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Left Column - My Journey -->
+        <div class="space-y-6">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+            <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+              My Journey
+            </h3>
+            <p class="text-slate-600 leading-relaxed mb-4">
+              My fascination with technology started with a simple question: <strong>"How does this actually work?"</strong>
+              That curiosity led me to build my first homelab, a Proxmox server running in my room that quickly
+              became my personal playground for learning Linux, networking, and containerization. What began as
+              simple weekend experiments evolved into a passion for understanding systems from the ground up.
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              Now studying Computer Information Systems at Okanagan College, I'm combining <strong>hands-on infrastructure
+              experience with formal software development training</strong>. From building full-stack applications to managing
+              Docker containers, I thrive at the intersection of development and operations; writing code that runs
+              reliably and maintains easily.
+            </p>
+          </div>
+        </div>
 
-    @keyframes gradient-x {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
+        <!-- Right Column - What Drives Me -->
+        <div class="space-y-6">
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    What Drives Me
+                </h3>
+                <p class="text-slate-600 leading-relaxed mb-4">
+                    I believe the <strong>best software is built by people who understand the infrastructure it runs on</strong>,
+                    and the best infrastructure is designed by those who think like developers. This philosophy
+                    drives everything I do, whether I'm optimizing database queries in PostgreSQL, orchestrating
+                    containers in my homelab, or designing <strong>efficient and resilient architectures</strong> for class projects.
+                </p>
+                <p class="text-slate-600 leading-relaxed">
+                    I'm seeking a <strong>co-op or entry-level position</strong> where I can bring my unique blend of development
+                    skills and infrastructure knowledge to solve real-world problems. I want to work with teams
+                    that value continuous learning, and aren't afraid to dig deep into both the application layer
+                    and the systems beneath it. Let's build something great together.
+                </p>
+            </div>
+        </div>
+      </div>
+    </div>
 
-    .animate-blob {
-      animation: blob 7s infinite;
-    }
-
-    .animation-delay-2000 {
-      animation-delay: 2s;
-    }
-
-    .animation-delay-4000 {
-      animation-delay: 4s;
-    }
-
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .animate-bounce-slow {
-      animation: bounce 3s infinite;
-    }
-
-    .animate-gradient-x {
-      background-size: 200% auto;
-      animation: gradient-x 3s linear infinite;
-    }
-
-    .typing-cursor {
-      display: inline-block;
-      animation: blink 1s step-end infinite;
-      margin-left: 2px;
-      font-weight: 300;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-  </style>
-
-  <section class="bg-slate-50 border-t border-slate-200">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <!-- Technical Toolkit Section -->
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
       <h2 class="text-2xl font-bold text-slate-900 mb-10">Technical Toolkit</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -214,4 +212,59 @@ import headshot from '../assets/headshot.jpg';
       </div>
     </div>
   </section>
+
+  <style>
+    @keyframes blob {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes gradient-x {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+
+    .animation-delay-4000 {
+      animation-delay: 4s;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-bounce-slow {
+      animation: bounce 3s infinite;
+    }
+
+    .animate-gradient-x {
+      background-size: 200% auto;
+      animation: gradient-x 3s linear infinite;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+      font-weight: 300;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
 </MainLayout>
