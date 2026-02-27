@@ -53,7 +53,7 @@ const experiences = [
   <style is:inline>
     @media print {
       @page {
-        margin: 0.45in 0.55in;
+        margin: 0.35in 0.5in;
         size: letter;
       }
 
@@ -62,12 +62,20 @@ const experiences = [
         print-color-adjust: exact !important;
       }
 
+      body {
+        background-color: #ffffff !important;
+      }
+
+      .bg-slate-100, .bg-blue-100 {
+        background-color: #ffffff !important;
+      }
+
       header, footer { display: none !important; }
       main { margin: 0 !important; padding: 0 !important; }
 
       body {
-        font-size: 10.5pt !important;
-        line-height: 1.4 !important;
+        font-size: 9.5pt !important;
+        line-height: 1.25 !important;
       }
 
       .max-w-4xl {
@@ -82,65 +90,77 @@ const experiences = [
       }
 
       .space-y-10 > * + * {
-        margin-top: 1rem !important;
+        margin-top: 0.4rem !important;
       }
 
       .space-y-8 > * + * {
-        margin-top: 0.65rem !important;
+        margin-top: 0.35rem !important;
+      }
+
+      .space-y-3 > * + * {
+        margin-top: 0.3rem !important;
       }
 
       .gap-8 {
-        gap: 1.2rem !important;
+        gap: 0.75rem !important;
+      }
+
+      .gap-3 {
+        gap: 0.3rem !important;
       }
 
       .mb-12 {
-        margin-bottom: 0.85rem !important;
+        margin-bottom: 0.45rem !important;
       }
 
       .pb-8 {
-        padding-bottom: 0.6rem !important;
+        padding-bottom: 0.3rem !important;
       }
 
       .mb-4 {
-        margin-bottom: 0.6rem !important;
+        margin-bottom: 0.35rem !important;
       }
 
       .mb-6 {
-        margin-bottom: 0.6rem !important;
+        margin-bottom: 0.35rem !important;
       }
 
       .mb-2 {
-        margin-bottom: 0.3rem !important;
-      }
-
-      .mb-1 {
         margin-bottom: 0.2rem !important;
       }
 
+      .mb-1 {
+        margin-bottom: 0.1rem !important;
+      }
+
+      .mt-1 {
+        margin-top: 0.1rem !important;
+      }
+
       h1 {
-        font-size: 1.75rem !important;
-        margin-bottom: 0.25rem !important;
-        line-height: 1.2 !important;
+        font-size: 1.55rem !important;
+        margin-bottom: 0.15rem !important;
+        line-height: 1.1 !important;
       }
 
       p.text-xl {
-        font-size: 1.05rem !important;
-        margin-bottom: 0.6rem !important;
-        line-height: 1.3 !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 0.35rem !important;
+        line-height: 1.2 !important;
       }
 
       h2.text-xl {
-        font-size: 1.1rem !important;
-        padding-bottom: 0.4rem !important;
-        margin-bottom: 0.6rem !important;
+        font-size: 1rem !important;
+        padding-bottom: 0.25rem !important;
+        margin-bottom: 0.35rem !important;
       }
 
       h3 {
-        font-size: 1rem !important;
+        font-size: 0.9rem !important;
       }
 
       .space-y-8 > div {
-        margin-top: 0.65rem !important;
+        margin-top: 0.4rem !important;
       }
 
       .space-y-8 > div:first-child {
@@ -148,42 +168,69 @@ const experiences = [
       }
 
       .flex-wrap.gap-2 {
-        gap: 0.3rem !important;
-        row-gap: 0.3rem !important;
+        gap: 0.2rem !important;
+        row-gap: 0.2rem !important;
       }
 
       .px-3.py-1 {
-        padding: 0.2rem 0.5rem !important;
-        font-size: 0.8rem !important;
-        line-height: 1.3 !important;
+        padding: 0.12rem 0.35rem !important;
+        font-size: 0.7rem !important;
+        line-height: 1.2 !important;
       }
 
       .leading-relaxed {
-        line-height: 1.45 !important;
+        line-height: 1.3 !important;
       }
 
       .text-sm {
-        font-size: 0.85rem !important;
+        font-size: 0.75rem !important;
       }
 
       .flex.flex-wrap.gap-4 {
-        gap: 0.85rem !important;
+        gap: 0.5rem !important;
       }
 
       .w-4.h-4 {
-        width: 0.95rem !important;
-        height: 0.95rem !important;
+        width: 0.8rem !important;
+        height: 0.8rem !important;
+      }
+
+      .w-5.h-5 {
+        width: 0.85rem !important;
+        height: 0.85rem !important;
+      }
+
+      .mt-0\.5 {
+        margin-top: 0.08rem !important;
       }
 
       aside .space-y-8 > * + * {
-        margin-top: 0.85rem !important;
+        margin-top: 0.5rem !important;
+      }
+
+      .px-2\.5 {
+        padding-left: 0.35rem !important;
+        padding-right: 0.35rem !important;
+      }
+
+      .py-0\.5 {
+        padding-top: 0.08rem !important;
+        padding-bottom: 0.08rem !important;
+      }
+
+      .pb-2 {
+        padding-bottom: 0.25rem !important;
+      }
+
+      .items-start {
+        align-items: flex-start !important;
       }
     }
   </style>
 
   <!-- Page Content Container -->
   <div class="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8 print:p-0">
-    
+
     <!-- Action Bar-->
     <div class="flex justify-end mb-8 print:hidden">
       <button 
@@ -257,23 +304,13 @@ const experiences = [
         <section>
           <h2 class="text-xl font-bold text-slate-900 border-b-2 border-slate-900 pb-2 mb-4">Accomplishments</h2>
           <div class="space-y-3">
-            <div class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-              <div>
-                <h3 class="font-bold text-slate-800">Dean's List - Second Year</h3>
-                <p class="text-sm text-slate-600">Achieved academic excellence with a GPA above 4.0</p>
-              </div>
+            <div>
+              <h3 class="font-bold text-slate-800">Dean's List - Second Year</h3>
+              <p class="text-sm text-slate-600">Achieved academic excellence with a GPA above 4.0</p>
             </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-              <div>
-                <h3 class="font-bold text-slate-800">Dean's List - First Year</h3>
-                <p class="text-sm text-slate-600">Achieved academic excellence with a GPA above 4.0</p>
-              </div>
+            <div>
+              <h3 class="font-bold text-slate-800">Dean's List - First Year</h3>
+              <p class="text-sm text-slate-600">Achieved academic excellence with a GPA above 4.0</p>
             </div>
           </div>
         </section>
