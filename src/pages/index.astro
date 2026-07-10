@@ -4,208 +4,235 @@ import { Image } from 'astro:assets';
 import headshot from '../assets/headshot.jpg';
 ---
 
-<MainLayout title="Jonathan Wirick - CS Student & Homelabber">
-  <!-- Animated gradient background spanning entire section -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 opacity-70"></div>
-    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-    <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-    <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+<MainLayout
+  title="Jonathan Wirick | Software Developer & CIS Student"
+  description="Computer Information Systems student at Okanagan College building homelab infrastructure and full-stack applications in Java, PHP, and PostgreSQL. Seeking software development co-op opportunities in Kelowna, BC."
+>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Jonathan Wirick',
+      url: 'https://jwirick.dev',
+      email: 'mailto:jwirick06@gmail.com',
+      jobTitle: 'Computer Information Systems Student',
+      affiliation: { '@type': 'CollegeOrUniversity', name: 'Okanagan College' },
+      address: { '@type': 'PostalAddress', addressLocality: 'West Kelowna', addressRegion: 'BC', addressCountry: 'CA' },
+      sameAs: [
+        'https://github.com/jwirick06',
+        'https://www.linkedin.com/in/jonathan-wirick-6a657b34b/',
+      ],
+      knowsAbout: ['Java', 'PHP', 'PostgreSQL', 'JavaScript', 'Docker', 'Linux', 'Proxmox VE', 'System Administration'],
+    })}
+  />
+  <!-- Hero -->
+  <section class="relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-    <!-- Hero Image -->
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-      <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-        <!-- Profile Image with floating animation -->
-        <div class="flex-shrink-0 animate-float">
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl blur-2xl opacity-20 animate-pulse"></div>
-            <div class="relative w-48 h-48 sm:w-64 sm:h-64 rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/50">
+        <!-- Copy -->
+        <div>
+          <div class="inline-flex items-center gap-2 mb-6 px-3 py-1.5 border border-emerald-700/40 bg-emerald-950/30 text-emerald-400 rounded font-mono text-xs">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            available for co-op &amp; entry-level roles
+          </div>
+
+          <p class="font-mono text-sm text-accent mb-3">$ whoami</p>
+          <h1 class="font-mono text-4xl sm:text-5xl font-bold text-zinc-50 tracking-tight mb-4">
+            Jonathan Wirick
+          </h1>
+
+          <p class="text-lg text-zinc-400 mb-8 leading-relaxed max-w-lg">
+            Computer Information Systems student at <strong class="text-zinc-200 font-semibold">Okanagan College</strong>.
+            I build <strong class="text-zinc-200 font-semibold">homelab infrastructure</strong>, self-host
+            everything I can, and write <strong class="text-zinc-200 font-semibold">Java</strong> and
+            <strong class="text-zinc-200 font-semibold">PHP</strong> in between.
+          </p>
+
+          <div class="flex flex-wrap gap-4 mb-8">
+            <a
+              href="/projects"
+              class="group inline-flex items-center gap-1.5 font-mono font-semibold text-sm px-6 py-3 border border-accent text-accent rounded hover:bg-accent hover:text-zinc-950 transition-colors"
+            >
+              <span>[</span><span>View Projects</span>
+              <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <span>]</span>
+            </a>
+            <a
+              href="/resume"
+              class="group inline-flex items-center gap-1.5 font-mono font-semibold text-sm px-6 py-3 border border-zinc-700 text-zinc-300 rounded hover:border-accent hover:text-accent transition-colors"
+            >
+              <span>[</span><span>See Resume</span>
+              <svg class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+              <span>]</span>
+            </a>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm">
+            <a href="https://github.com/jwirick06" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-zinc-500 hover:text-accent transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+              </svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/jonathan-wirick-6a657b34b/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-zinc-500 hover:text-accent transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="mailto:jwirick06@gmail.com" class="inline-flex items-center gap-2 text-zinc-500 hover:text-accent transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              jwirick06@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Neofetch-style profile card -->
+        <div class="rounded-lg border border-zinc-800 bg-zinc-900 shadow-2xl overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-zinc-800 bg-zinc-900/80">
+            <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+            <span class="ml-2 font-mono text-xs text-zinc-500">jonathan@homelab: neofetch</span>
+          </div>
+          <div class="p-6 flex flex-col sm:flex-row gap-6 items-start">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 rounded-md overflow-hidden border-2 border-accent-700/50">
               <Image
                 src={headshot}
                 alt="Jonathan Wirick"
                 class="w-full h-full object-cover"
                 loading="eager"
                 quality={90}
-                widths={[192, 256, 384, 512]}
-                sizes="(max-width: 640px) 192px, 256px"
+                widths={[112, 224]}
+                sizes="112px"
               />
             </div>
+            <dl class="font-mono text-sm leading-relaxed">
+              <dt class="sr-only">Name</dt>
+              <dd class="text-zinc-50 font-bold mb-1">jonathan-wirick</dd>
+              <div class="h-px w-32 bg-zinc-800 mb-2"></div>
+              <div class="flex gap-2"><dt class="text-accent">OS</dt><dd class="text-zinc-400">Human.js (v20)</dd></div>
+              <div class="flex gap-2"><dt class="text-accent">Role</dt><dd class="text-zinc-400">CIS Student</dd></div>
+              <div class="flex gap-2"><dt class="text-accent">Stack</dt><dd class="text-zinc-400">Java · PHP · SQL</dd></div>
+              <div class="flex gap-2"><dt class="text-accent">Uptime</dt><dd class="text-zinc-400">2nd year @ OC</dd></div>
+              <div class="flex gap-2">
+                <dt class="text-accent">Status</dt>
+                <dd class="text-emerald-400 flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>open<span class="term-cursor">_</span>
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
 
-        <!-- Hero Section -->
-        <div class="flex-1 max-w-2xl">
-          <div class="inline-block mb-4 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium animate-bounce-slow">
-            👋 Available for co-op/job opportunities
-          </div>
+      </div>
+    </div>
 
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
-            Hi, I'm <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Jonathan</span>
-            <br />
-            <span class="text-slate-900">I build </span>
-            <span class="inline-block min-w-[280px] sm:min-w-[320px]">
-              <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient-x typing-text">systems & software</span>
-              <span class="typing-cursor">|</span>
-            </span>
-          </h1>
+    <!-- About Me -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <p class="font-mono text-xs text-accent uppercase tracking-widest mb-2">// about</p>
+      <h2 class="font-mono text-2xl sm:text-3xl font-bold text-zinc-50 mb-10">
+        About Me
+      </h2>
 
-          <p class="text-lg sm:text-xl text-slate-600 mb-8 leading-relaxed">
-            Computer Information Systems student at <strong class="text-slate-800">Okanagan College</strong>.
-            Passionate about <strong class="text-blue-600">homelab infrastructure</strong>,
-            Linux containers, and self-hosting solutions. Proficient in
-            <strong class="text-purple-600">Java</strong> and <strong class="text-purple-600">PHP</strong> development.
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-zinc-900 rounded-lg p-8 border border-zinc-800 hover:border-accent-700/60 transition-colors">
+          <h3 class="font-mono text-lg font-bold text-zinc-50 mb-4">My Journey</h3>
+          <p class="text-zinc-400 leading-relaxed mb-4">
+            My fascination with technology started with a simple question: <strong class="text-zinc-200 font-semibold">"How does this actually work?"</strong>
+            That curiosity led me to build my first homelab, a Proxmox server running in my room that quickly
+            became my personal playground for learning Linux, networking, and containerization. What began as
+            simple weekend experiments evolved into a passion for understanding systems from the ground up.
           </p>
+          <p class="text-zinc-400 leading-relaxed">
+            Now studying Computer Information Systems at Okanagan College, I'm combining <strong class="text-zinc-200 font-semibold">hands-on infrastructure
+            experience with formal software development training</strong>. From building full-stack applications to managing
+            Docker containers, I thrive at the intersection of development and operations; writing code that runs
+            reliably and maintains easily.
+          </p>
+        </div>
 
-          <!-- CTA Buttons with enhanced styling -->
-          <div class="flex flex-wrap gap-4 mb-8">
-            <a
-              href="/projects"
-              class="group inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform"
-            >
-              View My Projects
-              <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-            <a
-              href="/resume"
-              class="group inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold text-slate-700 bg-white border-2 border-slate-200 rounded-lg hover:border-blue-300 hover:bg-slate-50 transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 transform"
-            >
-              See My Resume
-              <svg class="ml-2 w-5 h-5 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </a>
-          </div>
-
-          <!-- Social links / Quick stats -->
-          <div class="flex flex-wrap items-center gap-6 text-sm text-slate-600">
-            <a href="https://github.com/jwirick" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-blue-600 transition-colors group">
-              <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-              </svg>
-              <span>GitHub</span>
-            </a>
-            <div class="flex items-center gap-2">
-              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Open to collaboration</span>
-            </div>
-          </div>
+        <div class="bg-zinc-900 rounded-lg p-8 border border-zinc-800 hover:border-accent-700/60 transition-colors">
+          <h3 class="font-mono text-lg font-bold text-zinc-50 mb-4">What Drives Me</h3>
+          <p class="text-zinc-400 leading-relaxed mb-4">
+            I believe the <strong class="text-zinc-200 font-semibold">best software is built by people who understand the infrastructure it runs on</strong>,
+            and the best infrastructure is designed by those who think like developers. This philosophy
+            drives everything I do, whether I'm optimizing database queries in PostgreSQL, orchestrating
+            containers in my homelab, or designing <strong class="text-zinc-200 font-semibold">efficient and resilient architectures</strong> for class projects.
+          </p>
+          <p class="text-zinc-400 leading-relaxed">
+            I'm seeking a <strong class="text-zinc-200 font-semibold">co-op or entry-level position</strong> where I can bring my unique blend of development
+            skills and infrastructure knowledge to solve real-world problems. I want to work with teams
+            that value continuous learning, and aren't afraid to dig deep into both the application layer
+            and the systems beneath it. Let's build something great together.
+          </p>
         </div>
       </div>
     </div>
 
-    <!-- About Me Section -->
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-          About <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Me</span>
-        </h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"></div>
-      </div>
+    <!-- Technical Toolkit -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <p class="font-mono text-xs text-accent uppercase tracking-widest mb-2">// toolkit</p>
+      <h2 class="font-mono text-2xl sm:text-3xl font-bold text-zinc-50 mb-10">Technical Toolkit</h2>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <!-- Left Column - My Journey -->
-        <div class="space-y-6">
-          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
-            <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-              My Journey
-            </h3>
-            <p class="text-slate-600 leading-relaxed mb-4">
-              My fascination with technology started with a simple question: <strong>"How does this actually work?"</strong>
-              That curiosity led me to build my first homelab, a Proxmox server running in my room that quickly
-              became my personal playground for learning Linux, networking, and containerization. What began as
-              simple weekend experiments evolved into a passion for understanding systems from the ground up.
-            </p>
-            <p class="text-slate-600 leading-relaxed">
-              Now studying Computer Information Systems at Okanagan College, I'm combining <strong>hands-on infrastructure
-              experience with formal software development training</strong>. From building full-stack applications to managing
-              Docker containers, I thrive at the intersection of development and operations; writing code that runs
-              reliably and maintains easily.
-            </p>
-          </div>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <!-- Right Column - What Drives Me -->
-        <div class="space-y-6">
-            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-100 hover:shadow-xl transition-shadow">
-                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    What Drives Me
-                </h3>
-                <p class="text-slate-600 leading-relaxed mb-4">
-                    I believe the <strong>best software is built by people who understand the infrastructure it runs on</strong>,
-                    and the best infrastructure is designed by those who think like developers. This philosophy
-                    drives everything I do, whether I'm optimizing database queries in PostgreSQL, orchestrating
-                    containers in my homelab, or designing <strong>efficient and resilient architectures</strong> for class projects.
-                </p>
-                <p class="text-slate-600 leading-relaxed">
-                    I'm seeking a <strong>co-op or entry-level position</strong> where I can bring my unique blend of development
-                    skills and infrastructure knowledge to solve real-world problems. I want to work with teams
-                    that value continuous learning, and aren't afraid to dig deep into both the application layer
-                    and the systems beneath it. Let's build something great together.
-                </p>
-            </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Technical Toolkit Section -->
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-      <h2 class="text-2xl font-bold text-slate-900 mb-10">Technical Toolkit</h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
         <!-- Card 1: Development -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <div class="bg-zinc-900 rounded-lg p-8 border border-zinc-800 hover:border-accent-700/60 transition-colors">
+          <div class="w-12 h-12 rounded border border-zinc-800 bg-zinc-950 text-accent flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-4">Development</h3>
-          <p class="text-slate-500 text-sm mb-10 h-12">
+          <h3 class="font-mono text-base font-bold text-zinc-50 mb-3">Development</h3>
+          <p class="text-zinc-500 text-sm mb-8 leading-relaxed">
             Building robust applications with modern languages and rigorous database design.
           </p>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Java</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">C#</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">PHP</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">JavaScript</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">PostgreSQL</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Oracle SQL</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Java</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">C#</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">PHP</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">JavaScript</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">PostgreSQL</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Oracle SQL</span>
           </div>
         </div>
 
         <!-- Card 2: Infrastructure -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        <div class="bg-zinc-900 rounded-lg p-8 border border-zinc-800 hover:border-accent-700/60 transition-colors">
+          <div class="w-12 h-12 rounded border border-zinc-800 bg-zinc-950 text-accent flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-4">Infrastructure</h3>
-          <p class="text-slate-500 text-sm mb-10 h-12">
+          <h3 class="font-mono text-base font-bold text-zinc-50 mb-3">Infrastructure</h3>
+          <p class="text-zinc-500 text-sm mb-8 leading-relaxed">
             Managing virtualized environments, containers, and network security.
           </p>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Proxmox VE</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Docker</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Linux (Debian)</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Nginx</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Networking</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Proxmox VE</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Docker</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Linux (Debian)</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Nginx</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Networking</span>
           </div>
         </div>
 
         <!-- Card 3: Workflow -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <div class="bg-zinc-900 rounded-lg p-8 border border-zinc-800 hover:border-accent-700/60 transition-colors">
+          <div class="w-12 h-12 rounded border border-zinc-800 bg-zinc-950 text-accent flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           </div>
-          <h3 class="text-lg font-bold text-slate-900 mb-4">Tools & Workflow</h3>
-          <p class="text-slate-500 text-sm mb-10 h-12">
+          <h3 class="font-mono text-base font-bold text-zinc-50 mb-3">Tools &amp; Workflow</h3>
+          <p class="text-zinc-500 text-sm mb-8 leading-relaxed">
              The software and practices I use to maintain code quality and organization.
           </p>
           <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Git & GitHub</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Jetbrains</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Agile/Scrum</span>
-            <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Draw.io</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Git &amp; GitHub</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Jetbrains</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Agile/Scrum</span>
+            <span class="px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 rounded font-mono text-xs">Draw.io</span>
           </div>
         </div>
 
@@ -214,52 +241,10 @@ import headshot from '../assets/headshot.jpg';
   </section>
 
   <style>
-    @keyframes blob {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -50px) scale(1.1); }
-      66% { transform: translate(-20px, 20px) scale(0.9); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-
-    @keyframes gradient-x {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .animate-blob {
-      animation: blob 7s infinite;
-    }
-
-    .animation-delay-2000 {
-      animation-delay: 2s;
-    }
-
-    .animation-delay-4000 {
-      animation-delay: 4s;
-    }
-
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .animate-bounce-slow {
-      animation: bounce 3s infinite;
-    }
-
-    .animate-gradient-x {
-      background-size: 200% auto;
-      animation: gradient-x 3s linear infinite;
-    }
-
-    .typing-cursor {
+    .term-cursor {
       display: inline-block;
       animation: blink 1s step-end infinite;
-      margin-left: 2px;
-      font-weight: 300;
+      margin-left: 1px;
     }
 
     @keyframes blink {

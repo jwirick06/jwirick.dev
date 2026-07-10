@@ -1,1 +1,31 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  ::selection {
+    background-color: theme('colors.accent.500');
+    color: theme('colors.zinc.950');
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: theme('colors.zinc.950');
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.zinc.700');
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.zinc.600');
+  }
+}

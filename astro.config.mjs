@@ -3,5 +3,5 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://jwirick.dev',
-  integrations: [tailwind()],
+  integrations: [tailwind({ applyBaseStyles: false })],
 });

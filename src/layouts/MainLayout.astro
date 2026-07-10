@@ -1,14 +1,26 @@
 ---
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import headshot from '../assets/headshot.jpg';
+
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = 'Jonathan Wirick — Computer Information Systems student, full-stack developer, and homelab enthusiast in Kelowna, BC. Seeking software co-op opportunities.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = await getImage({ src: headshot, width: 800, height: 800, format: 'jpeg' });
+const ogImageURL = new URL(ogImage.src, Astro.site);
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Resume', href: '/resume' },
+  { label: './home', href: '/' },
+  { label: './projects', href: '/projects' },
+  { label: './resume', href: '/resume' },
 ];
 ---
 
@@ -25,36 +37,50 @@ const navItems = [
       gtag('config', 'G-SW6PV3MM20');
       </script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Jonathan Wirick" />
+    <meta name="theme-color" content="#09090b" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jonathan Wirick" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col">
-    
+  <body class="bg-zinc-950 text-zinc-200 font-sans antialiased min-h-screen flex flex-col">
+
     <!-- GLOBAL NAVIGATION -->
-    <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur border-b border-slate-200">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="/" class="font-bold text-xl text-slate-900 tracking-tight hover:text-blue-600 transition-colors">
-          Jonathan Wirick
+    <header class="sticky top-0 z-50 w-full bg-zinc-950/90 backdrop-blur border-b border-zinc-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <a href="/" class="font-mono font-bold text-lg text-zinc-100 tracking-tight hover:text-accent transition-colors">
+          <span class="text-accent">~/</span><span class="hidden sm:inline">jonathan-wirick</span><span class="sm:hidden">jw</span>
         </a>
 
-        <nav class="hidden sm:flex gap-8">
+        <nav class="flex gap-4 sm:gap-8 font-mono text-sm" aria-label="Main navigation">
           {navItems.map((item) => (
-            <a 
-              href={item.href} 
-              class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
+            <a
+              href={item.href}
+              class={`text-zinc-400 hover:text-accent transition-colors ${item.href === '/' ? 'hidden sm:inline' : ''}`}
+              aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
             >
               {item.label}
             </a>
           ))}
         </nav>
-
-        <!-- Mobile Menu Button -->
-        <a href="/resume" class="sm:hidden text-sm font-medium text-blue-600">
-          My Resume
-        </a>
       </div>
     </header>
 
@@ -64,17 +90,20 @@ const navItems = [
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-white border-t border-slate-200 mt-12">
+    <footer class="bg-zinc-950 border-t border-zinc-800 mt-12">
       <div class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm text-slate-500">
-          © {new Date().getFullYear()} Jonathan Wirick. Built with Astro & Tailwind.
+        <p class="font-mono text-xs text-zinc-500">
+          <span class="text-accent">//</span> © {new Date().getFullYear()} Jonathan Wirick — built with Astro &amp; Tailwind
         </p>
-        <div class="flex gap-6">
-          <a href="https://github.com/jwirick06" target="_blank" class="text-slate-400 hover:text-slate-900">
-            GitHub
+        <div class="flex gap-6 font-mono text-sm">
+          <a href="https://github.com/jwirick06" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-accent transition-colors">
+            [GitHub]
           </a>
-          <a href="https://linkedin.com" target="_blank" class="text-slate-400 hover:text-blue-700">
-            LinkedIn
+          <a href="https://www.linkedin.com/in/jonathan-wirick-6a657b34b/" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-accent transition-colors">
+            [LinkedIn]
+          </a>
+          <a href="mailto:jwirick06@gmail.com" class="text-zinc-400 hover:text-accent transition-colors">
+            [Email]
           </a>
         </div>
       </div>

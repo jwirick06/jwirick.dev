@@ -31,42 +31,41 @@ const codingProjects = [
 ];
 ---
 
-<MainLayout title="Projects | Jonathan Wirick">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h1 class="text-3xl font-bold text-slate-900 mb-4">My Projects</h1>
-    <p class="text-xl text-slate-600 mb-12 max-w-2xl">
+<MainLayout
+  title="Projects | Jonathan Wirick"
+  description="Software and infrastructure projects by Jonathan Wirick: a Java distributed task scheduler, a PHP/PostgreSQL Kanban app, and a self-hosted Proxmox/Docker homelab."
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-2">$ ls ./projects</p>
+    <h1 class="font-mono text-3xl font-bold text-zinc-50 mb-4">My Projects</h1>
+    <p class="text-lg text-zinc-400 mb-12 max-w-2xl">
       A collection of my academic coursework, personal coding projects, and the self-hosted infrastructure I maintain at home.
     </p>
 
     <!-- SECTION 1: HOMELAB -->
     <div class="mb-16">
       <div class="flex items-center gap-3 mb-6">
-        <div class="p-2 bg-blue-100 rounded-lg text-blue-600">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        <div class="w-9 h-9 rounded border border-zinc-800 bg-zinc-950 text-accent flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
         </div>
-        <h2 class="text-2xl font-bold text-slate-900">Homelab Infrastructure</h2>
+        <h2 class="font-mono text-xl font-bold text-zinc-50">Homelab Infrastructure</h2>
       </div>
 
       <!-- Network/Infrastructure Card -->
-      <div class="bg-blue-50 text-slate-600 rounded-xl p-6 sm:p-8 shadow-xl">
-        <h3 class="text-xl font-bold text-slate-900 mb-4">The Stack</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-6 sm:p-8">
+        <h3 class="font-mono text-sm text-accent uppercase tracking-widest mb-4">// the_stack</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {homelabServices.map((service) => (
-            <div class="relative overflow-hidden
-                        border border-slate-300 rounded-lg p-4 bg-white
-                        transition-all duration-300 ease-out
-                        hover:scale-105 hover:shadow-2xl hover:border-blue-500 hover:-translate-y-1 hover:z-10 hover:bg-blue-100
-            ">
-                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-50 rounded-full blur-2xl opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
-                <h4 class="relative font-bold text-blue-600 mb-2 text-lg">{service.name}</h4>
-                <p class="relative text-sm text-slate-600 leading-relaxed">{service.desc}</p>
+            <div class="border border-zinc-800 rounded-lg p-4 bg-zinc-950 transition-colors duration-200 hover:border-accent-700/60">
+                <h4 class="font-mono font-bold text-accent mb-2 text-base">{service.name}</h4>
+                <p class="text-sm text-zinc-400 leading-relaxed">{service.desc}</p>
             </div>
           ))}
         </div>
 
-        <div class="mt-6 pt-6 border-t border-slate-300">
-          <p class="text-sm italic">
-            Hardware: Running on a dedicated bare-metal server with 32GB RAM, utilizing ZFS on a 5TB DAS for storage reliability.
+        <div class="mt-6 pt-6 border-t border-zinc-800">
+          <p class="font-mono text-xs text-zinc-500">
+            <span class="text-accent">//</span> Hardware: bare-metal server, 32GB RAM, ZFS on a 5TB DAS for storage reliability.
           </p>
         </div>
       </div>
@@ -75,29 +74,30 @@ const codingProjects = [
     <!-- SECTION 2: CODING PROJECTS -->
     <div>
       <div class="flex items-center gap-3 mb-6">
-        <div class="p-2 bg-purple-100 rounded-lg text-purple-600">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <div class="w-9 h-9 rounded border border-zinc-800 bg-zinc-950 text-accent flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
-        <h2 class="text-2xl font-bold text-slate-900">Software Development</h2>
+        <h2 class="font-mono text-xl font-bold text-zinc-50">Software Development</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {codingProjects.map((project) => (
-          <div class="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
-            <h3 class="text-lg font-bold text-slate-900 mb-2">{project.title}</h3>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-6 hover:border-accent-700/60 transition-colors">
+            <h3 class="font-mono text-base font-bold text-zinc-50 mb-3">{project.title}</h3>
             <div class="flex flex-wrap gap-2 mb-4">
               {project.tags.map((tag) => (
-                <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">
+                <span class="px-2 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 font-mono text-xs rounded">
                   {tag}
                 </span>
               ))}
             </div>
-            <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+            <p class="text-zinc-400 mb-6 text-sm leading-relaxed">
               {project.description}
             </p>
-            <a href={project.link} class="text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1">
-              View Code 
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="font-mono text-sm font-medium text-accent hover:text-accent-300 flex items-center gap-1.5">
+              [ View Code
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              ]
             </a>
           </div>
         ))}
