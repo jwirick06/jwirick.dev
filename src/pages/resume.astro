@@ -1,57 +1,137 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 
-const skills = [
-  // Languages
-  "Java",
-  "C#",
-  "PHP",
-  "SQL/PLSQL",
-  "HTML/CSS",
-  "JavaScript",
+const summary = "Computer Information Systems student at Okanagan College, credential conferral pending, continuing to a Bachelor of Computer Information Systems with a Cybersecurity option in Fall 2026. Supported front-line service desk operations for the City of West Kelowna across 15 facilities, working in Ivanti for both ticketing and asset inventory, imaging and deploying end-user hardware, and replacing network equipment. Three years of self-directed server and network administration in a permanent home lab.";
 
-  // Tools & Technologies
-  "Linux (Ubuntu/Debian)",
-  "Docker & Docker Compose",
-  "Proxmox VE",
-  "Git & GitHub",
-  "PostgreSQL",
-  "REST APIs",
-
-  // Concepts & Practices
-  "System Design",
-  "Database Design",
-  "Unit Testing",
-  "Test-Driven Development",
-  "Agile/Scrum",
-  "CI/CD Pipelines"
+const skillGroups = [
+  {
+    label: "Service Desk & Support",
+    items: ["Ivanti (ticketing, asset inventory, back end)", "Incident intake and prioritization", "ITIL-aligned queue practice", "Hardware imaging and deployment", "End-user support", "Point-of-sale systems", "Technical documentation"]
+  },
+  {
+    label: "Infrastructure & Networking",
+    items: ["Cisco/Meraki switches and access points", "Proxmox VE", "Docker Compose", "Hyper-V", "Windows Server 2025 (home lab)", "Linux (Ubuntu/Debian)", "Tailscale", "DNS and static IP addressing"]
+  },
+  {
+    label: "Cloud & Version Control",
+    items: ["Azure Repos", "Azure Key Vault", "Git", "Microsoft 365", "Intune reporting"]
+  },
+  {
+    label: "Languages & Data",
+    items: ["Java", "JavaScript", "C#", "PHP", "Dart/Flutter", "Oracle SQL", "PostgreSQL", "Excel and Power Query (M)"]
+  }
 ];
+
+const problemSolving = "Problem Solving: Enjoy working with people to solve problems using technology.";
 
 const experiences = [
   {
-    role: "Home Server Administrator",
-    company: "Personal Homelab",
-    period: "2024 - Present",
-    description: "Architected and maintain a virtualized infrastructure using Proxmox VE, managing 3 Linux VMs and 15+ Docker containers with near 100% uptime. Implemented automated backup solutions, configured reverse proxy with SSL certificates, and established monitoring dashboards for system health and resource utilization."
+    role: "Information Systems Student",
+    company: "City of West Kelowna",
+    period: "June 2026 - August 2026",
+    bullets: [
+      "Provided front-line support across all 15 city-managed facilities, receiving, documenting, and prioritizing incidents and service requests in Ivanti.",
+      "Covered the majority of the service desk queue alone for a week while the team was away, resolving every request within scope and escalating the rest.",
+      "Traced and corrected a fault in the Ivanti back end that prevented a field value from saving, restoring accurate records.",
+      "Imaged 65+ desktops and laptops, and deployed 10+ workstations and 120+ monitors including mounting, peripherals, and cable management.",
+      "Replaced and configured 10+ Cisco and Meraki switches and access points.",
+      "Completed a full technology asset audit across all 15 locations and built a dashboard for lifecycle and replacement planning.",
+      "Authored the city's cybersecurity incident response plan and its accompanying task matrix.",
+      "Facilitated a runbook initiative across the four-person infrastructure team, developing the template, running the sessions, and guiding senior staff through documenting their procedures.",
+      "Conducted an Adobe licensing survey leading to an estimated 20% reduction in annual Adobe spend, roughly $10,000 or more per year.",
+      "Configured Azure Repos and Key Vault for departmental adoption after presenting the proposal to management, and authored the Git workflow and onboarding documentation.",
+      "Relocated a department's technology during an office move, and supported Emergency Support Services setup during wildfire response."
+    ]
   },
   {
-    role: "Full-Stack Developer",
-    company: "Academic & Personal Projects",
-    period: "2024 - Present",
-    description: "Designed and developed web applications using PHP, JavaScript, and PostgreSQL. Built RESTful APIs with proper error handling, implemented secure authentication using session management and password hashing, and optimized database queries through indexing and query analysis."
+    role: "Parts Driver & Warehouse Support",
+    company: "Lordco Auto Parts",
+    period: "June 2024 - Present",
+    bullets: [
+      "Handle inbound calls from customers and branches, recording order details and updating records in internal systems.",
+      "Operate point-of-sale and inventory systems for counter sales, returns, and parts lookups.",
+      "Run multi-stop delivery routes on schedule, coordinating with branches on changes and priority orders."
+    ]
   },
   {
-    role: "Backend Developer",
-    company: "SteadyPlan - Team Project",
-    period: "Fall 2025",
-    description: "Led backend development in a team of 4, designing the PostgreSQL database schema and implementing RESTful APIs in PHP. Facilitated Agile practices including weekly standups and sprint planning, resulting in on-time delivery of all planned features. Integrated drag-and-drop task management with real-time database updates."
+    role: "Cashier/Cook",
+    company: "Chopped Leaf",
+    period: "April 2022 - September 2024",
+    bullets: [
+      "Served customers and prepared menu items through high-volume lunch and dinner periods.",
+      "Operated the point-of-sale system for counter orders, processing cash and card transactions.",
+      "Maintained food safety and cleanliness standards."
+    ]
   }
 ];
+
+const selfDirected = [
+  {
+    role: "Personal Lab",
+    period: "2023 - Present",
+    bullets: [
+      "Run a permanent Proxmox VE environment with LXC containers, Docker Compose services, scheduled backups, and Tailscale remote access.",
+      "Built a Windows Server 2025 Hyper-V lab covering AD DS, organizational units, Group Policy, static IP addressing, DNS, and domain joins.",
+      "Provide ongoing informal first-line support for family and neighbours."
+    ]
+  }
+];
+
+const projects = [
+  {
+    name: "Sendline",
+    tags: ["Flutter", "Dart", "Supabase", "PostGIS"],
+    description: "Ski and snowboard tracking app built in Flutter, backed by Supabase and PostGIS with row-level security enforcing per-user access to run data.",
+    link: null
+  },
+  {
+    name: "Taskd",
+    tags: ["Java", "Maven", "JUnit", "Concurrency"],
+    description: "Distributed task scheduler with priority queues, retry handling, and real-time metrics, built around enterprise design patterns with 90%+ test coverage.",
+    link: "https://github.com/jwirick06/Taskd"
+  },
+  {
+    name: "SteadyPlan",
+    tags: ["PHP", "PostgreSQL", "REST API", "MVC"],
+    description: "Kanban project management app. Served as project lead, leading a team of 4 of my peers, and designed the PostgreSQL schema and the PHP REST API behind task reordering and team collaboration.",
+    link: "https://github.com/Rkovl/SteadyPlan"
+  },
+  {
+    name: "Bracket Bets",
+    tags: ["JavaScript", "GraphQL", "Async"],
+    description: "Client-side prediction game that consumes a third-party GraphQL API, parsing tournament brackets into a Top 8 guessing interface.",
+    link: "https://github.com/Rkovl/BracketBets"
+  }
+];
+
+const education = [
+  {
+    credential: "Diploma of Computer Information Systems",
+    school: "Okanagan College",
+    period: "September 2024 - August 2026",
+    badge: "Conferral pending",
+    notes: [
+      "Coursework complete and program requirements met. Conferral pending the graduation audit.",
+      "Dean's List in both years of the program."
+    ]
+  },
+  {
+    credential: "Bachelor of Computer Information Systems, Cybersecurity option",
+    school: "Okanagan College",
+    period: "Starting Fall 2026",
+    badge: "In progress",
+    notes: []
+  }
+];
+
+const headingClass = "font-mono text-xl font-bold text-zinc-50 border-b-2 border-zinc-800 pb-2 mb-4 print:text-black print:border-zinc-300";
+const bulletClass = "text-zinc-400 leading-relaxed print:text-zinc-700";
+const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-md text-sm font-medium font-mono print:bg-white print:border print:border-zinc-300 print:text-zinc-800";
 ---
 
 <MainLayout
   title="Resume | Jonathan Wirick"
-  description="Resume of Jonathan Wirick — CIS student at Okanagan College (Dean's List), full-stack developer with Java, PHP, and PostgreSQL experience, seeking software co-op roles."
+  description="Resume of Jonathan Wirick: Computer Information Systems student at Okanagan College and service desk support at the City of West Kelowna, with Ivanti, hardware deployment, and infrastructure experience."
 >
   <style is:inline>
     @media print {
@@ -63,6 +143,12 @@ const experiences = [
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
+      }
+
+      /* The site is dark by default. Force a white page for print. */
+      html, body {
+        background-color: #ffffff !important;
+        color: #18181b !important;
       }
 
       header, footer { display: none !important; }
@@ -84,6 +170,41 @@ const experiences = [
         break-inside: avoid;
       }
 
+      /* Long sections must be allowed to break; keep individual entries intact */
+      section:has(.resume-timeline) {
+        page-break-inside: auto;
+        break-inside: auto;
+      }
+
+      .resume-timeline > li,
+      .resume-bullets > li {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      /* Print the timeline as flat entries: no rail, no indent */
+      .resume-timeline {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .resume-timeline > li {
+        display: block !important;
+      }
+
+      .resume-timeline .timeline-rail {
+        display: none !important;
+      }
+
+      .resume-bullets {
+        padding-left: 1.1rem !important;
+        margin: 0 !important;
+      }
+
+      .resume-bullets > * + * {
+        margin-top: 0.15rem !important;
+      }
+
       .space-y-10 > * + * {
         margin-top: 1rem !important;
       }
@@ -92,8 +213,20 @@ const experiences = [
         margin-top: 0.65rem !important;
       }
 
+      .space-y-6 > * + * {
+        margin-top: 0.55rem !important;
+      }
+
+      .space-y-4 > * + * {
+        margin-top: 0.45rem !important;
+      }
+
       .gap-8 {
         gap: 1.2rem !important;
+      }
+
+      .gap-4 {
+        gap: 0.5rem !important;
       }
 
       .mb-12 {
@@ -110,6 +243,10 @@ const experiences = [
 
       .mb-6 {
         margin-bottom: 0.6rem !important;
+      }
+
+      .mb-3 {
+        margin-bottom: 0.4rem !important;
       }
 
       .mb-2 {
@@ -142,14 +279,6 @@ const experiences = [
         font-size: 1rem !important;
       }
 
-      .space-y-8 > div {
-        margin-top: 0.65rem !important;
-      }
-
-      .space-y-8 > div:first-child {
-        margin-top: 0 !important;
-      }
-
       .flex-wrap.gap-2 {
         gap: 0.3rem !important;
         row-gap: 0.3rem !important;
@@ -177,10 +306,6 @@ const experiences = [
         width: 0.95rem !important;
         height: 0.95rem !important;
       }
-
-      aside .space-y-8 > * + * {
-        margin-top: 0.85rem !important;
-      }
     }
   </style>
 
@@ -200,7 +325,7 @@ const experiences = [
     <!-- Resume Header -->
     <div class="mb-12 border-b border-zinc-800 pb-8 print:border-zinc-300">
       <h1 class="font-mono text-4xl font-bold text-zinc-50 mb-2 print:text-black">Jonathan Wirick</h1>
-      <p class="text-xl text-zinc-400 mb-6 print:text-zinc-700">CIS Student | Full-Stack Developer | Infrastructure Enthusiast</p>
+      <p class="text-xl text-zinc-400 mb-6 print:text-zinc-700">CIS Student | Service Desk &amp; Infrastructure Support</p>
 
       <div class="flex flex-wrap gap-4 text-sm text-zinc-500 font-mono print:text-zinc-600">
         <div class="flex items-center gap-1">
@@ -218,92 +343,160 @@ const experiences = [
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- Main Content Column -->
-      <div class="md:col-span-2 space-y-10">
-        <section>
-          <h2 class="font-mono text-xl font-bold text-zinc-50 border-b-2 border-zinc-800 pb-2 mb-4 print:text-black print:border-zinc-300">
-            <span class="text-accent">##</span> Relevant Experience
-          </h2>
-          <div class="space-y-8">
-            {experiences.map((job) => (
-              <div>
-                <div class="flex justify-between items-baseline mb-1">
+    <div class="space-y-10">
+
+      <section>
+        <h2 class={headingClass}><span class="text-accent">##</span> Summary</h2>
+        <p class={bulletClass}>{summary}</p>
+      </section>
+
+      <section>
+        <h2 class={headingClass}><span class="text-accent">##</span> Key Skills</h2>
+        <div class="space-y-4">
+          {skillGroups.map((group) => (
+            <div>
+              <h3 class="font-mono font-bold text-zinc-100 mb-2 print:text-black">
+                <span class="text-accent print:text-accent-700">-</span> {group.label}
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span class={chipClass}>{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+          <p class={bulletClass}>{problemSolving}</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class={headingClass}><span class="text-accent">##</span> Work Experience</h2>
+        <ol class="resume-timeline space-y-8 list-none">
+          {experiences.map((job, index) => (
+            <li class="flex gap-4">
+              <!-- Rail: marker plus the connecting line to the next entry -->
+              <div class="timeline-rail flex flex-col items-center flex-shrink-0 pt-1.5" aria-hidden="true">
+                <span
+                  class:list={[
+                    'w-3 h-3 rounded-full flex-shrink-0',
+                    job.period.includes('Present')
+                      ? 'bg-accent ring-4 ring-accent-500/15'
+                      : 'bg-zinc-950 border-2 border-zinc-700',
+                  ]}
+                ></span>
+                {index < experiences.length - 1 && (
+                  <span class="w-px flex-1 bg-zinc-800 mt-2"></span>
+                )}
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-baseline gap-3 mb-1">
                   <h3 class="font-bold text-zinc-100 print:text-black">{job.role}</h3>
-                  <span class="text-sm text-zinc-500 font-mono print:text-zinc-600">{job.period}</span>
+                  <span class="text-sm text-zinc-500 font-mono flex-shrink-0 print:text-zinc-600">{job.period}</span>
                 </div>
                 <p class="text-zinc-300 font-medium mb-2 print:text-zinc-700">{job.company}</p>
-                <p class="text-zinc-400 leading-relaxed print:text-zinc-700">{job.description}</p>
+                <ul class="resume-bullets list-disc pl-5 marker:text-zinc-600 space-y-1.5 print:marker:text-zinc-500">
+                  {job.bullets.map((bullet) => (
+                    <li class={bulletClass}>{bullet}</li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
-        </section>
+            </li>
+          ))}
+        </ol>
+      </section>
 
-        <section>
-          <h2 class="font-mono text-xl font-bold text-zinc-50 border-b-2 border-zinc-800 pb-2 mb-4 print:text-black print:border-zinc-300">
-            <span class="text-accent">##</span> Education
-          </h2>
+      <section>
+        <h2 class={headingClass}><span class="text-accent">##</span> Self-Directed Technical Experience</h2>
+        <div class="space-y-6">
+          {selfDirected.map((entry) => (
+            <div>
+              <div class="flex justify-between items-baseline gap-3 mb-2">
+                <h3 class="font-bold text-zinc-100 print:text-black">{entry.role}</h3>
+                <span class="text-sm text-zinc-500 font-mono flex-shrink-0 print:text-zinc-600">{entry.period}</span>
+              </div>
+              <ul class="resume-bullets list-disc pl-5 marker:text-zinc-600 space-y-1.5 print:marker:text-zinc-500">
+                {entry.bullets.map((bullet) => (
+                  <li class={bulletClass}>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
           <div>
-            <h3 class="font-bold text-zinc-100 print:text-black">Bachelor's in Computer Information Systems</h3>
-            <p class="text-zinc-400 print:text-zinc-700">Okanagan College</p>
-            <div class="flex justify-between items-center mt-1">
-              <span class="text-sm text-zinc-500 font-mono print:text-zinc-600">2024 - Present</span>
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-500/10 border border-accent-700/40 text-accent print:bg-accent-100 print:border-accent-300 print:text-accent-700">
-                2nd Year
-              </span>
+            <h3 class="font-mono font-bold text-zinc-100 mb-3 print:text-black">
+              <span class="text-accent print:text-accent-700">-</span> Projects
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 print:grid-cols-1 print:gap-2">
+              {projects.map((project) => (
+                <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-4 print:bg-white print:border-0 print:p-0">
+                  <div class="flex items-baseline justify-between gap-2 mb-2">
+                    <h4 class="font-mono font-bold text-zinc-50 print:text-black">{project.name}</h4>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="font-mono text-sm font-medium text-accent hover:text-accent-300 flex-shrink-0 print:hidden"
+                      >
+                        [ Code ]
+                      </a>
+                    )}
+                  </div>
+                  <div class="flex flex-wrap gap-2 mb-2">
+                    {project.tags.map((tag) => (
+                      <span class="px-2 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 font-mono text-xs rounded print:bg-white print:border-zinc-300 print:text-zinc-800">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <p class="text-zinc-400 text-sm leading-relaxed print:text-zinc-700">{project.description}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section>
-          <h2 class="font-mono text-xl font-bold text-zinc-50 border-b-2 border-zinc-800 pb-2 mb-4 print:text-black print:border-zinc-300">
-            <span class="text-accent">##</span> Accomplishments
-          </h2>
-          <div class="space-y-3">
-            <div class="flex items-start gap-3">
-              <div>
-                <h3 class="font-bold text-zinc-100 print:text-black">Dean's List - Second Year</h3>
-                <p class="text-sm text-zinc-400 print:text-zinc-700">Awarded for top academic standing at Okanagan College</p>
+      <section>
+        <h2 class={headingClass}><span class="text-accent">##</span> Education</h2>
+        <div class="space-y-6">
+          {education.map((entry) => (
+            <div>
+              <h3 class="font-bold text-zinc-100 print:text-black">{entry.credential}</h3>
+              <p class="text-zinc-400 print:text-zinc-700">{entry.school}</p>
+              <div class="flex justify-between items-center gap-3 mt-1 mb-2">
+                <span class="text-sm text-zinc-500 font-mono print:text-zinc-600">{entry.period}</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium font-mono bg-accent-500/10 border border-accent-700/40 text-accent flex-shrink-0 print:bg-white print:border-accent-300 print:text-accent-700">
+                  {entry.badge}
+                </span>
               </div>
+              {entry.notes.length > 0 && (
+                <ul class="resume-bullets list-disc pl-5 marker:text-zinc-600 space-y-1.5 print:marker:text-zinc-500">
+                  {entry.notes.map((note) => (
+                    <li class={bulletClass}>{note}</li>
+                  ))}
+                </ul>
+              )}
             </div>
-            <div class="flex items-start gap-3">
-              <div>
-                <h3 class="font-bold text-zinc-100 print:text-black">Dean's List - First Year</h3>
-                <p class="text-sm text-zinc-400 print:text-zinc-700">Awarded for top academic standing at Okanagan College</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+          ))}
+        </div>
+      </section>
 
-      <!-- Sidebar Column -->
-      <aside class="space-y-8">
-        <section>
-          <h2 class="font-mono text-xl font-bold text-zinc-50 border-b-2 border-zinc-800 pb-2 mb-4 print:text-black print:border-zinc-300">
-            <span class="text-accent">##</span> Skills
-          </h2>
-          <div class="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <span class="px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 rounded-md text-sm font-medium font-mono print:bg-white print:border print:border-zinc-300 print:text-zinc-800">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </section>
+      <section>
+        <h2 class={headingClass}><span class="text-accent">##</span> Additional</h2>
+        <p class={bulletClass}>Valid Class 5 driver's licence. Able to obtain a Police Information Check.</p>
+      </section>
 
-        <section class="print:hidden">
-          <h2 class="font-mono text-xl font-bold text-zinc-50 border-b-2 border-zinc-800 pb-2 mb-4">
-            <span class="text-accent">##</span> Connect
-          </h2>
-          <p class="text-zinc-400 text-sm mb-4">
-            I'm currently seeking co-op, internship, and entry-level opportunities.
-          </p>
-          <a href="mailto:jwirick06@gmail.com" class="block w-full text-center border border-accent text-accent font-mono font-bold py-2 px-4 rounded hover:bg-accent hover:text-zinc-950 transition-colors">
-            [ Contact Me ]
-          </a>
-        </section>
-      </aside>
+      <section class="print:hidden">
+        <h2 class={headingClass}><span class="text-accent">##</span> Connect</h2>
+        <p class="text-zinc-400 text-sm mb-4">
+          Open to service desk, IT support, and infrastructure roles.
+        </p>
+        <a href="mailto:jwirick06@gmail.com" class="inline-block border border-accent text-accent font-mono font-bold py-2 px-6 rounded hover:bg-accent hover:text-zinc-950 transition-colors">
+          [ Contact Me ]
+        </a>
+      </section>
 
     </div>
   </div>

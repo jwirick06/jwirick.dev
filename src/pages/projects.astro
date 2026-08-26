@@ -11,6 +11,12 @@ const homelabServices = [
 
 const codingProjects = [
   {
+    title: "Sendline",
+    tags: ["Flutter", "Dart", "Supabase", "PostGIS", "Row-Level Security", "Mobile"],
+    description: "Built a ski and snowboard tracking app in Flutter, backed by Supabase and PostGIS. Modelled runs as geospatial data and enforced per-user access to it with row-level security policies at the database layer.",
+    link: null
+  },
+  {
     title: "Taskd - Distributed Task Scheduler",
     tags: ["Java", "Maven", "JUnit", "Design Patterns", "Concurrency", "Thread-Safety"],
     description: "High-performance task scheduling system with priority queues, retry mechanisms, and real-time metrics. Implements enterprise design patterns (Strategy, Decorator, Builder, Observer, Factory) with 90%+ test coverage and 1000+ tasks/second throughput.",
@@ -33,7 +39,7 @@ const codingProjects = [
 
 <MainLayout
   title="Projects | Jonathan Wirick"
-  description="Software and infrastructure projects by Jonathan Wirick: a Java distributed task scheduler, a PHP/PostgreSQL Kanban app, and a self-hosted Proxmox/Docker homelab."
+  description="Software and infrastructure projects by Jonathan Wirick: a Flutter ski tracking app, a Java distributed task scheduler, a PHP/PostgreSQL Kanban app, and a self-hosted Proxmox/Docker homelab."
 >
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <p class="font-mono text-xs text-accent uppercase tracking-widest mb-2">$ ls ./projects</p>
@@ -94,11 +100,13 @@ const codingProjects = [
             <p class="text-zinc-400 mb-6 text-sm leading-relaxed">
               {project.description}
             </p>
-            <a href={project.link} target="_blank" rel="noopener noreferrer" class="font-mono text-sm font-medium text-accent hover:text-accent-300 flex items-center gap-1.5">
-              [ View Code
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              ]
-            </a>
+            {project.link && (
+              <a href={project.link} target="_blank" rel="noopener noreferrer" class="font-mono text-sm font-medium text-accent hover:text-accent-300 flex items-center gap-1.5">
+                [ View Code
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                ]
+              </a>
+            )}
           </div>
         ))}
       </div>

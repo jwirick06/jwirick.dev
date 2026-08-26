@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = 'Jonathan Wirick — Computer Information Systems student, full-stack developer, and homelab enthusiast in Kelowna, BC. Seeking software co-op opportunities.',
+  description = 'Jonathan Wirick: Computer Information Systems student, IT support, and homelab enthusiast in West Kelowna, BC. Open to opportunities.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -93,7 +93,7 @@ const navItems = [
     <footer class="bg-zinc-950 border-t border-zinc-800 mt-12">
       <div class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="font-mono text-xs text-zinc-500">
-          <span class="text-accent">//</span> © {new Date().getFullYear()} Jonathan Wirick — built with Astro &amp; Tailwind
+          <span class="text-accent">//</span> © {new Date().getFullYear()} Jonathan Wirick, built with Astro &amp; Tailwind
         </p>
         <div class="flex gap-6 font-mono text-sm">
           <a href="https://github.com/jwirick06" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-accent transition-colors">
