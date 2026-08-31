@@ -1,40 +1,24 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { projects } from '../data/resume';
 
 // Project Data
+// Nodes drawn in the topology diagram below. Every claim here is already
+// published elsewhere on this site (see resume.astro "Self-Directed
+// Technical Experience"). Do not add hardware, hostnames, addresses or
+// vendors that are not verifiable.
 const homelabServices = [
-  { name: "Proxmox Cluster", desc: "The core of my lab. Manages LXC containers and VMs for development and production." },
+  { name: "Proxmox VE", desc: "The core of my lab, running on a Lenovo System x3250 M6. A bare-metal host with 32GB of RAM running LXC containers and VMs for development and production." },
+  { name: "ZFS on a 5TB DAS", desc: "Direct-attached storage for the host, running ZFS for storage reliability." },
   { name: "Docker Compose", desc: "Orchestration for microservices including web servers and internal tools." },
-  { name: "Media Streaming Pipeline", desc: "Automated media delivery stack (Jellyfin) with hardware-accelerated transcoding and ZFS-backed persistent storage."},
-  { name: "Tailscale VPN", desc: "Secure remote access solution built on WireGuard. Enables encrypted management of internal services without exposing public firewall ports."}
+  { name: "Jellyfin media pipeline", desc: "Automated media delivery stack with hardware-accelerated transcoding and ZFS-backed persistent storage." },
+  { name: "media-automation", desc: "Request handling and library automation for the Jellyfin library. Several services running together in one container." },
+  { name: "Tailscale VPN", desc: "Remote access built on WireGuard. Lets me manage internal services without opening a port at the edge." }
 ];
 
-const codingProjects = [
-  {
-    title: "Sendline",
-    tags: ["Flutter", "Dart", "Supabase", "PostGIS", "Row-Level Security", "Mobile"],
-    description: "Built a ski and snowboard tracking app in Flutter, backed by Supabase and PostGIS. Modelled runs as geospatial data and enforced per-user access to it with row-level security policies at the database layer.",
-    link: null
-  },
-  {
-    title: "Taskd - Distributed Task Scheduler",
-    tags: ["Java", "Maven", "JUnit", "Design Patterns", "Concurrency", "Thread-Safety"],
-    description: "High-performance task scheduling system with priority queues, retry mechanisms, and real-time metrics. Implements enterprise design patterns (Strategy, Decorator, Builder, Observer, Factory) with 90%+ test coverage and 1000+ tasks/second throughput.",
-    link: "https://github.com/jwirick06/Taskd"
-  },
-  {
-    title: "SteadyPlan",
-    tags: ["PHP", "PostgreSQL", "REST API", "Database Design", "MVC", "User Authentication (Session)"],
-    description: "Engineered the backend for a Kanban-style project management application using PHP and PostgreSQL. Architected the database to handle task reordering and team collaboration, and developed a secure API consumed by the frontend.",
-    link: "https://github.com/Rkovl/SteadyPlan"
-  },
-  {
-    title: "Bracket Bets",
-    tags: ["Javascript", "JSON Data Parsing", "GraphQL", "Asynchronous Programming", "Frontend"],
-    description: "Developed a client-side prediction game that consumes a third-party GraphQL API to retrieve historical tournament data. Implemented logic to parse complex JSON brackets and render a simplified Top 8 guessing interface.",
-    link: "https://github.com/Rkovl/BracketBets"
-  }
-];
+// Detailed register of the shared project list. The terse register and the
+// canonical names, links and stacks live in src/data/resume.ts.
+const codingProjects = projects.map((project) => ({ ...project.detail, link: project.link }));
 ---
 
 <MainLayout
@@ -45,7 +29,7 @@ const codingProjects = [
     <p class="font-mono text-xs text-accent uppercase tracking-widest mb-2">$ ls ./projects</p>
     <h1 class="font-mono text-3xl font-bold text-zinc-50 mb-4">My Projects</h1>
     <p class="text-lg text-zinc-400 mb-12 max-w-2xl">
-      A collection of my academic coursework, personal coding projects, and the self-hosted infrastructure I maintain at home.
+      Course work, personal projects, and the infrastructure I run at home.
     </p>
 
     <!-- SECTION 1: HOMELAB -->
@@ -58,20 +42,212 @@ const codingProjects = [
       </div>
 
       <!-- Network/Infrastructure Card -->
-      <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-6 sm:p-8">
-        <h3 class="font-mono text-sm text-accent uppercase tracking-widest mb-4">// the_stack</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-4 sm:p-8 hover:border-accent-700/60 transition-colors">
+        <h3 class="font-mono text-sm text-accent uppercase tracking-widest mb-1">// the_stack</h3>
+        <p class="text-sm text-zinc-400 mb-6 max-w-2xl">
+          How the pieces fit together. Guests live inside the Proxmox host, storage attaches to it, and Tailscale reaches it as an overlay rather than through an open port.
+        </p>
+
+        <figure class="topo">
+          <!-- ===================== WIDE LAYOUT (>= 640px) ===================== -->
+          <svg
+            class="topo-svg hidden sm:block w-full h-auto"
+            viewBox="0 0 960 480"
+            role="group"
+            aria-labelledby="topo-title-d"
+          >
+            <title id="topo-title-d">Home lab topology diagram, wide layout</title>
+            <defs>
+              <marker id="arw-wire-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#7ba6f2" />
+              </marker>
+              <marker id="arw-tunnel-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#a6c1f7" />
+              </marker>
+            </defs>
+
+            <!-- ---- links (drawn under the nodes) ---- -->
+            <!-- wired LAN: edge down into the host -->
+            <path class="lnk lnk-wire" d="M480,82 L480,162" marker-end="url(#arw-wire-d)" />
+            <text class="lbl-link" x="494" y="128">wired LAN</text>
+
+            <!-- Tailscale overlay: remote device straight to the host, past the edge -->
+            <path class="lnk lnk-tunnel" d="M124,82 L124,162" marker-end="url(#arw-tunnel-d)" />
+            <text class="lbl-tunnel" x="140" y="114">Tailscale over WireGuard</text>
+            <text class="lbl-link" x="140" y="130">encrypted overlay to the host</text>
+            <text class="lbl-link" x="140" y="146">no inbound ports opened</text>
+
+            <!-- direct attached storage -->
+            <path class="lnk lnk-storage" d="M710,314 L774,314" />
+            <text class="lbl-link" x="742" y="304" text-anchor="middle">attached</text>
+
+            <!-- ---- nodes ---- -->
+            <g class="topo-node" tabindex="0" role="img" aria-label="Remote device, outside the home network. The origin of the Tailscale connection.">
+              <rect class="box box-outside" x="24" y="24" width="200" height="58" rx="8" />
+              <text class="lbl-name" x="44" y="50">Remote device</text>
+              <text class="lbl-sub" x="44" y="68">outside the home network</text>
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="Home network edge. The router and switch the lab sits behind.">
+              <rect class="box box-outside" x="380" y="24" width="200" height="58" rx="8" />
+              <text class="lbl-name" x="400" y="50">Router / switch</text>
+              <text class="lbl-sub" x="400" y="68">home network edge</text>
+            </g>
+
+            <!-- Proxmox host: the anchor. Guests are drawn inside it. -->
+            <g class="topo-node topo-host" tabindex="0" role="img" aria-label="Proxmox VE, running on a Lenovo System x3250 M6. The core of my lab. A bare-metal host with 32 gigabytes of RAM running LXC containers and VMs for development and production.">
+              <rect class="box box-host" x="20" y="162" width="690" height="298" rx="12" />
+              <text class="lbl-host" x="44" y="198">Proxmox VE</text>
+              <text class="lbl-sub" x="44" y="220">Lenovo x3250 M6 &#183; 32GB RAM &#183; the core of the lab</text>
+              <text class="lbl-band" x="44" y="252">LXC CONTAINERS AND VMS</text>
+              <path class="rule" d="M234,248 L686,248" />
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="Docker Compose, running on the Proxmox host. Orchestration for microservices including web servers and internal tools.">
+              <rect class="box box-guest" x="44" y="270" width="200" height="150" rx="8" />
+              <text class="lbl-name" x="62" y="300">Docker Compose</text>
+              <text class="lbl-body" x="62" y="328">Orchestrates web servers</text>
+              <text class="lbl-body" x="62" y="346">and internal tools as</text>
+              <text class="lbl-body" x="62" y="364">microservices.</text>
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="Jellyfin media pipeline, running on the Proxmox host. Automated media delivery stack with hardware-accelerated transcoding and ZFS-backed persistent storage.">
+              <rect class="box box-guest" x="266" y="270" width="200" height="150" rx="8" />
+              <text class="lbl-name" x="284" y="300">Jellyfin</text>
+              <text class="lbl-body" x="284" y="328">Media pipeline with</text>
+              <text class="lbl-body" x="284" y="346">hardware-accelerated</text>
+              <text class="lbl-body" x="284" y="364">transcoding on ZFS-backed</text>
+              <text class="lbl-body" x="284" y="382">persistent storage.</text>
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="media-automation, running on the Proxmox host. Request handling and library automation for the Jellyfin library, with several services running together in one container.">
+              <rect class="box box-guest" x="488" y="270" width="200" height="150" rx="8" />
+              <text class="lbl-name" x="506" y="300">media-automation</text>
+              <text class="lbl-body" x="506" y="328">Request handling and</text>
+              <text class="lbl-body" x="506" y="346">library automation for</text>
+              <text class="lbl-body" x="506" y="364">Jellyfin. Several</text>
+              <text class="lbl-body" x="506" y="382">services, one container.</text>
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="ZFS pool on a 5 terabyte direct-attached storage enclosure, attached to the Proxmox host for storage reliability.">
+              <rect class="box box-store" x="774" y="262" width="164" height="104" rx="8" />
+              <text class="lbl-name" x="792" y="292">ZFS pool</text>
+              <text class="lbl-body" x="792" y="318">5TB DAS, direct</text>
+              <text class="lbl-body" x="792" y="336">attached for</text>
+              <text class="lbl-body" x="792" y="354">reliability.</text>
+            </g>
+          </svg>
+
+          <!-- ===================== NARROW LAYOUT (< 640px) ===================== -->
+          <svg
+            class="topo-svg block sm:hidden w-full h-auto"
+            viewBox="0 0 256 558"
+            role="group"
+            aria-labelledby="topo-title-m"
+          >
+            <title id="topo-title-m">Home lab topology diagram, stacked layout</title>
+            <defs>
+              <marker id="arw-wire-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#7ba6f2" />
+              </marker>
+              <marker id="arw-tunnel-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#a6c1f7" />
+              </marker>
+            </defs>
+
+            <path class="lnk lnk-wire" d="M196,44 L196,86" marker-end="url(#arw-wire-m)" />
+            <path class="lnk lnk-tunnel" d="M60,44 L60,86" marker-end="url(#arw-tunnel-m)" />
+            <text class="lbl-tunnel sm-xs" x="66" y="70">Tailscale</text>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="Remote device, outside the home network. The origin of the Tailscale connection.">
+              <rect class="box box-outside" x="2" y="4" width="116" height="40" rx="6" />
+              <text class="lbl-name sm-name" x="14" y="22">Remote device</text>
+              <text class="lbl-sub sm-xs" x="14" y="36">outside the LAN</text>
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="Home network edge. The router and switch the lab sits behind.">
+              <rect class="box box-outside" x="138" y="4" width="116" height="40" rx="6" />
+              <text class="lbl-name sm-name" x="150" y="22">Router/switch</text>
+              <text class="lbl-sub sm-xs" x="150" y="36">network edge</text>
+            </g>
+
+            <g class="topo-node topo-host" tabindex="0" role="img" aria-label="Proxmox VE, running on a Lenovo System x3250 M6. The core of my lab. A bare-metal host with 32 gigabytes of RAM running LXC containers and VMs for development and production.">
+              <rect class="box box-host" x="2" y="86" width="252" height="456" rx="10" />
+              <text class="lbl-host sm-host" x="16" y="112">Proxmox VE</text>
+              <text class="lbl-sub sm-xs" x="16" y="128">Lenovo x3250 M6 &#183; 32GB RAM</text>
+              <path class="lnk lnk-storage" d="M128,138 L128,152" />
+              <text class="lbl-band sm-band" x="16" y="218">LXC CONTAINERS AND VMS</text>
+              <path class="rule" d="M150,214 L240,214" />
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="ZFS pool on a 5 terabyte direct-attached storage enclosure, attached to the Proxmox host for storage reliability.">
+              <rect class="box box-store" x="16" y="152" width="224" height="42" rx="6" />
+              <text class="lbl-name sm-name" x="30" y="170">ZFS pool &#183; 5TB DAS</text>
+              <text class="lbl-body sm-xs" x="30" y="184">direct attached storage</text>
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="Docker Compose, running on the Proxmox host. Orchestration for microservices including web servers and internal tools.">
+              <rect class="box box-guest" x="16" y="228" width="224" height="94" rx="6" />
+              <text class="lbl-name sm-name" x="30" y="252">Docker Compose</text>
+              <text class="lbl-body sm-xs" x="30" y="274">Microservices, web servers,</text>
+              <text class="lbl-body sm-xs" x="30" y="290">and internal tools.</text>
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="Jellyfin media pipeline, running on the Proxmox host. Automated media delivery stack with hardware-accelerated transcoding and ZFS-backed persistent storage.">
+              <rect class="box box-guest" x="16" y="330" width="224" height="94" rx="6" />
+              <text class="lbl-name sm-name" x="30" y="354">Jellyfin</text>
+              <text class="lbl-body sm-xs" x="30" y="376">Hardware-accelerated</text>
+              <text class="lbl-body sm-xs" x="30" y="392">transcoding, ZFS-backed</text>
+              <text class="lbl-body sm-xs" x="30" y="408">persistent storage.</text>
+            </g>
+
+            <g class="topo-node" tabindex="0" role="img" aria-label="media-automation, running on the Proxmox host. Request handling and library automation for the Jellyfin library, with several services running together in one container.">
+              <rect class="box box-guest" x="16" y="432" width="224" height="94" rx="6" />
+              <text class="lbl-name sm-name" x="30" y="456">media-automation</text>
+              <text class="lbl-body sm-xs" x="30" y="478">Request handling and library</text>
+              <text class="lbl-body sm-xs" x="30" y="494">automation for Jellyfin.</text>
+              <text class="lbl-body sm-xs" x="30" y="510">Several services, one container.</text>
+            </g>
+          </svg>
+
+          <figcaption class="sr-only">
+            The home network edge connects over wired LAN to a bare-metal Proxmox VE host.
+            Docker Compose, a Jellyfin container, and a media-automation container run as LXC
+            containers and VMs inside that host. A ZFS pool on a 5TB direct-attached enclosure is attached to
+            the host. A remote device reaches the host through a Tailscale overlay built on
+            WireGuard, without any inbound ports opened at the edge.
+          </figcaption>
+        </figure>
+
+        <!-- link key -->
+        <ul class="mt-5 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-zinc-400" aria-label="Diagram key">
+          <li class="flex items-center gap-2">
+            <svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true" class="shrink-0"><path d="M0,4 L26,4" stroke="#7ba6f2" stroke-width="2" /></svg>
+            wired LAN
+          </li>
+          <li class="flex items-center gap-2">
+            <svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true" class="shrink-0"><path d="M0,4 L26,4" stroke="#a6c1f7" stroke-width="1.5" stroke-dasharray="5 4" /></svg>
+            Tailscale overlay
+          </li>
+          <li class="flex items-center gap-2">
+            <svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true" class="shrink-0"><path d="M0,4 L26,4" stroke="#2f52a8" stroke-width="5" /></svg>
+            attached storage
+          </li>
+        </ul>
+
+        <!-- node detail: always visible, never hover-only -->
+        <dl class="mt-8 pt-6 border-t border-zinc-800 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
           {homelabServices.map((service) => (
-            <div class="border border-zinc-800 rounded-lg p-4 bg-zinc-950 transition-colors duration-200 hover:border-accent-700/60">
-                <h4 class="font-mono font-bold text-accent mb-2 text-base">{service.name}</h4>
-                <p class="text-sm text-zinc-400 leading-relaxed">{service.desc}</p>
+            <div>
+              <dt class="font-mono text-sm font-bold text-accent">{service.name}</dt>
+              <dd class="mt-1 text-sm text-zinc-400 leading-relaxed">{service.desc}</dd>
             </div>
           ))}
-        </div>
+        </dl>
 
         <div class="mt-6 pt-6 border-t border-zinc-800">
-          <p class="font-mono text-xs text-zinc-500">
-            <span class="text-accent">//</span> Hardware: bare-metal server, 32GB RAM, ZFS on a 5TB DAS for storage reliability.
+          <p class="font-mono text-xs text-zinc-400">
+            <span class="text-accent">//</span> Hardware: Lenovo System x3250 M6, 32GB RAM, ZFS on a 5TB DAS for storage reliability.
           </p>
         </div>
       </div>
@@ -114,3 +290,85 @@ const codingProjects = [
 
   </div>
 </MainLayout>
+
+<style>
+  /* ---------------------------------------------------------------
+     Topology diagram. Hand-authored SVG, no diagramming library.
+     All information is always visible: hover and keyboard focus only
+     highlight, they never reveal. Full prose for every node lives in
+     the <dl> below the figure.
+     --------------------------------------------------------------- */
+  .topo-svg {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    overflow: visible;
+  }
+
+  /* boxes */
+  .box {
+    fill: #09090b;               /* zinc-950 */
+    stroke: #27272a;             /* zinc-800 */
+    stroke-width: 1.5;
+    transition: stroke 150ms ease, fill 150ms ease;
+  }
+  .box-host {
+    fill: #0c1020;
+    stroke: #2f52a8;             /* accent-700 */
+  }
+  .box-guest { fill: #101013; }
+  .box-store {
+    fill: #09090b;
+    stroke: #3f3f46;             /* zinc-700 */
+    stroke-dasharray: none;
+  }
+
+  /* links */
+  .lnk { fill: none; }
+  .lnk-wire   { stroke: #7ba6f2; stroke-width: 2; }
+  .lnk-tunnel { stroke: #a6c1f7; stroke-width: 1.5; stroke-dasharray: 6 5; stroke-linecap: round; }
+  .lnk-storage{ stroke: #2f52a8; stroke-width: 5; stroke-linecap: round; }
+  .rule       { stroke: #27272a; stroke-width: 1; fill: none; }
+
+  /* type */
+  .lbl-host   { fill: #7ba6f2; font-size: 17px; font-weight: 700; letter-spacing: .02em; }
+  .lbl-name   { fill: #fafafa; font-size: 13px; font-weight: 700; }
+  .lbl-sub    { fill: #a1a1aa; font-size: 11px; }
+  .lbl-body   { fill: #a1a1aa; font-size: 11px; }
+  .lbl-band   { fill: #a1a1aa; font-size: 9.5px; letter-spacing: .16em; }
+  .lbl-link   { fill: #a1a1aa; font-size: 10px; }
+  .lbl-tunnel { fill: #a6c1f7; font-size: 10.5px; font-weight: 700; }
+
+  /* narrow-layout type scale */
+  .sm-host { font-size: 14px; }
+  .sm-name { font-size: 11px; }
+  .sm-band { font-size: 9px; letter-spacing: .14em; }
+  .sm-xs   { font-size: 10px; }
+
+  /* hover / focus: highlight only, no reveal */
+  .topo-node { cursor: default; }
+  .topo-node:hover > .box,
+  .topo-node:focus-visible > .box {
+    stroke: #7ba6f2;
+    fill: #12182b;
+  }
+  .topo-node:hover > .box-host,
+  .topo-node:focus-visible > .box-host {
+    fill: #0f1730;
+  }
+  /* the global :focus-visible outline in global.css supplies the ring */
+
+  @media (prefers-reduced-motion: reduce) {
+    .box { transition: none; }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>

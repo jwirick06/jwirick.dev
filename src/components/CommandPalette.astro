@@ -1,0 +1,415 @@
+---
+// Cmd+K / Ctrl+K command palette. Pure Astro + Tailwind + one inline vanilla-JS
+// script. Mounted once, at the end of the body in MainLayout.astro.
+interface Command {
+  id: string;
+  label: string;
+  hint: string;
+  keywords: string[];
+  action: 'navigate' | 'link' | 'external' | 'print';
+  href?: string;
+}
+
+const commands: Command[] = [
+  {
+    id: 'home',
+    label: 'Home',
+    hint: '/',
+    keywords: ['home', 'landing', 'index', 'whoami', '/home'],
+    action: 'navigate',
+    href: '/',
+  },
+  {
+    id: 'projects',
+    label: 'Projects',
+    hint: '/projects',
+    keywords: ['projects', 'portfolio', 'homelab', 'work', '/projects'],
+    action: 'navigate',
+    href: '/projects',
+  },
+  {
+    id: 'resume',
+    label: 'Resume',
+    hint: '/resume',
+    keywords: ['resume', 'cv', '/resume', '/cv', '/resume.txt', 'curl'],
+    action: 'navigate',
+    href: '/resume',
+  },
+  {
+    id: 'print',
+    label: 'Print resume',
+    hint: 'window.print()',
+    keywords: ['print', 'pdf', 'resume', 'save', '/print'],
+    action: 'print',
+  },
+  {
+    id: 'email',
+    label: 'Email',
+    hint: 'jwirick06@gmail.com',
+    keywords: ['email', 'contact', 'mail', 'copy', 'write', 'message', '/email', 'mailto'],
+    action: 'link',
+    href: 'mailto:jwirick06@gmail.com',
+  },
+  {
+    id: 'github',
+    label: 'GitHub',
+    hint: 'github.com/jwirick06',
+    keywords: ['github', 'code', 'repo', 'source', '/github'],
+    action: 'external',
+    href: 'https://github.com/jwirick06',
+  },
+  {
+    id: 'linkedin',
+    label: 'LinkedIn',
+    hint: 'linkedin.com/in/jonathan-wirick',
+    keywords: ['linkedin', 'social', 'network', '/linkedin'],
+    action: 'external',
+    href: 'https://www.linkedin.com/in/jonathan-wirick-6a657b34b/',
+  },
+];
+
+const kbdClass =
+  'inline-flex items-center justify-center rounded border border-zinc-700 bg-zinc-800 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400';
+---
+
+<div id="cmdk-root">
+  <div
+    id="cmdk-backdrop"
+    class="cmdk-backdrop hidden fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-zinc-950/70 px-4 py-16 sm:py-24"
+  >
+    <div
+      id="cmdk-dialog"
+      class="cmdk-dialog flex max-h-[calc(100dvh-8rem)] w-full max-w-lg flex-col overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow-2xl sm:max-h-[calc(100dvh-12rem)]"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cmdk-title"
+    >
+      <h2 id="cmdk-title" class="sr-only">Command palette</h2>
+
+      <div class="flex shrink-0 items-center gap-2 border-b border-zinc-800 px-4 py-3">
+        <span class="font-mono text-accent" aria-hidden="true">&gt;</span>
+        <input
+          id="cmdk-input"
+          type="text"
+          role="combobox"
+          aria-expanded="true"
+          aria-controls="cmdk-list"
+          aria-autocomplete="list"
+          aria-activedescendant=""
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+          enterkeyhint="go"
+          data-form-type="other"
+          data-1p-ignore
+          data-lpignore="true"
+          data-bwignore
+          placeholder="Search commands"
+          class="min-w-0 flex-1 bg-transparent font-mono text-sm text-zinc-200 placeholder:text-zinc-400 outline-none"
+        />
+        <kbd class={kbdClass}>esc</kbd>
+      </div>
+
+      <ul
+        id="cmdk-list"
+        role="listbox"
+        aria-label="Commands"
+        class="min-h-0 flex-1 overflow-y-auto py-1"
+      >
+        {commands.map((cmd) => (
+          <li
+            id={`cmdk-option-${cmd.id}`}
+            role="option"
+            aria-selected="false"
+            data-keywords={`${cmd.label} ${cmd.keywords.join(' ')} ${cmd.hint} ${cmd.href ?? ''}`.toLowerCase()}
+          >
+            {cmd.action === 'print' ? (
+              <div
+                class="cmdk-run flex min-w-0 items-center justify-between gap-4 px-4 py-2.5 font-mono text-sm text-zinc-200 cursor-pointer"
+                data-action={cmd.action}
+              >
+                <span class="truncate">{cmd.label}</span>
+                <span class="shrink-0 max-w-[45%] truncate text-xs text-zinc-400">{cmd.hint}</span>
+              </div>
+            ) : (
+              <a
+                href={cmd.href}
+                target={cmd.action === 'external' ? '_blank' : undefined}
+                rel={cmd.action === 'external' ? 'noopener noreferrer' : undefined}
+                tabindex="-1"
+                class="cmdk-run flex min-w-0 items-center justify-between gap-4 px-4 py-2.5 font-mono text-sm text-zinc-200 no-underline cursor-pointer"
+                data-action={cmd.action}
+              >
+                <span class="truncate">{cmd.label}</span>
+                <span class="shrink-0 max-w-[45%] truncate text-xs text-zinc-400">{cmd.hint}</span>
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <div
+        id="cmdk-empty"
+        class="hidden px-4 py-6 font-mono text-sm text-zinc-200"
+        role="status"
+      >
+        <p><span class="text-accent">$</span> no matches for "<span id="cmdk-empty-query" class="text-zinc-200"></span>"</p>
+        <p class="mt-1 text-zinc-400">try: home, projects, resume, print, email, github, linkedin, or a path like /cv</p>
+      </div>
+
+      <div class="hidden shrink-0 sm:flex items-center justify-between gap-4 border-t border-zinc-800 px-4 py-2 font-mono text-xs text-zinc-400">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center gap-1"><kbd class={kbdClass}>&uarr;</kbd><kbd class={kbdClass}>&darr;</kbd> navigate</span>
+          <span class="flex items-center gap-1"><kbd class={kbdClass}>&crarr;</kbd> select</span>
+        </div>
+        <kbd class={kbdClass} data-cmdk-kbd>Ctrl K</kbd>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Open animation. This cannot be a transition: the backdrop toggles
+     `hidden` (display:none), and display is not animatable, so a transition
+     from the hidden state never gets a chance to run. A keyframe on the
+     newly-displayed element does. The site-wide prefers-reduced-motion guard
+     in global.css collapses the duration to ~0. */
+  .cmdk-backdrop:not(.hidden) .cmdk-dialog {
+    animation: cmdk-in 120ms ease-out;
+  }
+
+  @keyframes cmdk-in {
+    from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
+  }
+</style>
+
+<script>
+  (function () {
+    const root = document.getElementById('cmdk-root');
+    const backdrop = document.getElementById('cmdk-backdrop');
+    const input = document.getElementById('cmdk-input') as HTMLInputElement;
+    const list = document.getElementById('cmdk-list');
+    const empty = document.getElementById('cmdk-empty');
+    const emptyQuery = document.getElementById('cmdk-empty-query');
+    if (!root || !backdrop || !input || !list || !empty || !emptyQuery) return;
+
+    // Shortcut hint. Rendered as "Ctrl K" so the static HTML is right for most
+    // visitors, then swapped on Apple platforms. The handler itself accepts
+    // either modifier, so the hint is cosmetic and a wrong guess never breaks
+    // the shortcut.
+    const ua = navigator.userAgent;
+    const plat = (navigator as any).userAgentData?.platform || navigator.platform || '';
+    if (/Mac|iPhone|iPad|iPod/i.test(plat) || /Macintosh|iPhone|iPad|iPod/i.test(ua)) {
+      document.querySelectorAll('[data-cmdk-kbd]').forEach((el) => {
+        el.textContent = '\u2318 K';
+      });
+    }
+
+    const items = Array.from(list.querySelectorAll<HTMLLIElement>('[role="option"]'));
+
+    let lastFocused: HTMLElement | null = null;
+    let visibleItems = items.slice();
+    let activeIndex = -1;
+
+    function isOpen() {
+      return !backdrop!.classList.contains('hidden');
+    }
+
+    // Find the direct child of <body> that contains this component's root,
+    // regardless of how deeply it ends up nested when mounted elsewhere.
+    function bodyChildContainingRoot(): Element | null {
+      let el: Element | null = root;
+      while (el && el.parentElement !== document.body) {
+        el = el.parentElement;
+      }
+      return el;
+    }
+
+    function setInert(state: boolean) {
+      const skip = bodyChildContainingRoot();
+      Array.from(document.body.children).forEach((el) => {
+        if (el === skip) return;
+        if (state) {
+          el.setAttribute('inert', '');
+          el.setAttribute('aria-hidden', 'true');
+        } else {
+          el.removeAttribute('inert');
+          el.removeAttribute('aria-hidden');
+        }
+      });
+    }
+
+    function filter() {
+      const q = input.value.trim().toLowerCase();
+      visibleItems = items.filter((item) => {
+        const match = !q || (item.dataset.keywords || '').includes(q);
+        item.classList.toggle('hidden', !match);
+        return match;
+      });
+
+      if (visibleItems.length === 0) {
+        emptyQuery!.textContent = input.value;
+        empty!.classList.remove('hidden');
+        list!.classList.add('hidden');
+        activeIndex = -1;
+        input.setAttribute('aria-expanded', 'false');
+        input.setAttribute('aria-activedescendant', '');
+      } else {
+        empty!.classList.add('hidden');
+        list!.classList.remove('hidden');
+        input.setAttribute('aria-expanded', 'true');
+        setActive(0);
+      }
+    }
+
+    function setActive(index: number) {
+      if (visibleItems.length === 0) return;
+      const len = visibleItems.length;
+      activeIndex = ((index % len) + len) % len;
+      visibleItems.forEach((item, i) => {
+        const isActive = i === activeIndex;
+        item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        const runner = item.querySelector('.cmdk-run');
+        if (runner) {
+          runner.classList.toggle('bg-zinc-800', isActive);
+          runner.classList.toggle('text-accent', isActive);
+        }
+      });
+      const activeItem = visibleItems[activeIndex];
+      input.setAttribute('aria-activedescendant', activeItem.id);
+      activeItem.scrollIntoView({ block: 'nearest' });
+    }
+
+    function doPrint() {
+      const path = window.location.pathname.replace(/\/$/, '') || '/';
+      if (path === '/resume') {
+        window.print();
+      } else {
+        sessionStorage.setItem('cmdk-print-resume', '1');
+        window.location.href = '/resume';
+      }
+    }
+
+    function openPalette() {
+      if (isOpen()) return;
+      lastFocused = document.activeElement as HTMLElement | null;
+      backdrop!.classList.remove('hidden');
+      pointerX = -1;
+      pointerY = -1;
+      setInert(true);
+      // Hiding the body scrollbar reclaims its width and shifts the whole
+      // page sideways. Pad by exactly the width that disappears.
+      const gutter = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      if (gutter > 0) document.body.style.paddingRight = `${gutter}px`;
+      input.value = '';
+      filter();
+      input.focus();
+    }
+
+    function closePalette() {
+      if (!isOpen()) return;
+      backdrop!.classList.add('hidden');
+      setInert(false);
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+      if (lastFocused && typeof lastFocused.focus === 'function') {
+        lastFocused.focus();
+      }
+      lastFocused = null;
+    }
+
+    // Last real pointer position. Arrow-key navigation scrolls the list via
+    // scrollIntoView, which slides a different row under a stationary cursor;
+    // browsers respond by firing a synthetic mousemove at the *same* client
+    // coordinates to refresh hover state. Selecting on that event would undo
+    // the keypress the user just made, so only act on a genuine move.
+    let pointerX = -1;
+    let pointerY = -1;
+
+    items.forEach((item) => {
+      const runner = item.querySelector<HTMLElement>('.cmdk-run');
+      if (!runner) return;
+      runner.addEventListener('mousemove', (e) => {
+        if (e.clientX === pointerX && e.clientY === pointerY) return;
+        pointerX = e.clientX;
+        pointerY = e.clientY;
+        const idx = visibleItems.indexOf(item);
+        if (idx !== -1 && idx !== activeIndex) setActive(idx);
+      });
+      runner.addEventListener('click', () => {
+        const action = runner.dataset.action;
+        closePalette();
+        if (action === 'print') doPrint();
+        // navigate / link / external: the element is a real <a> and the
+        // browser's native click handles navigation, including
+        // target=_blank + rel=noopener noreferrer for external links.
+      });
+    });
+
+    document.querySelectorAll<HTMLElement>('[data-cmdk-open]').forEach((trigger) => {
+      trigger.addEventListener('click', openPalette);
+    });
+
+    input.addEventListener('input', filter);
+
+    input.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          setActive(activeIndex + 1);
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          setActive(activeIndex - 1);
+          break;
+        case 'Enter': {
+          e.preventDefault();
+          const activeItem = visibleItems[activeIndex];
+          const runner = activeItem?.querySelector<HTMLElement>('.cmdk-run');
+          runner?.click();
+          break;
+        }
+        case 'Escape':
+          e.preventDefault();
+          closePalette();
+          break;
+        case 'Tab':
+          // The input is the only focusable element inside the dialog, so
+          // trap focus by simply refusing to let Tab move it anywhere.
+          e.preventDefault();
+          break;
+      }
+    });
+
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closePalette();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const modifier = e.metaKey || e.ctrlKey;
+      if (modifier && (e.key === 'k' || e.key === 'K')) {
+        e.preventDefault();
+        if (isOpen()) {
+          closePalette();
+        } else {
+          openPalette();
+        }
+      }
+    });
+
+    // If a print command was requested from a page other than /resume, the
+    // command navigated here and left a flag for this fresh page load to
+    // pick up and finish the job.
+    if (sessionStorage.getItem('cmdk-print-resume')) {
+      sessionStorage.removeItem('cmdk-print-resume');
+      if (document.readyState === 'complete') {
+        window.print();
+      } else {
+        window.addEventListener('load', () => window.print());
+      }
+    }
+  })();
+</script>

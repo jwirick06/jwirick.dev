@@ -1,128 +1,16 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 
-const summary = "Computer Information Systems student at Okanagan College, credential conferral pending, continuing to a Bachelor of Computer Information Systems with a Cybersecurity option in Fall 2026. Supported front-line service desk operations for the City of West Kelowna across 15 facilities, working in Ivanti for both ticketing and asset inventory, imaging and deploying end-user hardware, and replacing network equipment. Three years of self-directed server and network administration in a permanent home lab.";
-
-const skillGroups = [
-  {
-    label: "Service Desk & Support",
-    items: ["Ivanti (ticketing, asset inventory, back end)", "Incident intake and prioritization", "ITIL-aligned queue practice", "Hardware imaging and deployment", "End-user support", "Point-of-sale systems", "Technical documentation"]
-  },
-  {
-    label: "Infrastructure & Networking",
-    items: ["Cisco/Meraki switches and access points", "Proxmox VE", "Docker Compose", "Hyper-V", "Windows Server 2025 (home lab)", "Linux (Ubuntu/Debian)", "Tailscale", "DNS and static IP addressing"]
-  },
-  {
-    label: "Cloud & Version Control",
-    items: ["Azure Repos", "Azure Key Vault", "Git", "Microsoft 365", "Intune reporting"]
-  },
-  {
-    label: "Languages & Data",
-    items: ["Java", "JavaScript", "C#", "PHP", "Dart/Flutter", "Oracle SQL", "PostgreSQL", "Excel and Power Query (M)"]
-  }
-];
-
-const problemSolving = "Problem Solving: Enjoy working with people to solve problems using technology.";
-
-const experiences = [
-  {
-    role: "Information Systems Student",
-    company: "City of West Kelowna",
-    period: "June 2026 - August 2026",
-    bullets: [
-      "Provided front-line support across all 15 city-managed facilities, receiving, documenting, and prioritizing incidents and service requests in Ivanti.",
-      "Covered the majority of the service desk queue alone for a week while the team was away, resolving every request within scope and escalating the rest.",
-      "Traced and corrected a fault in the Ivanti back end that prevented a field value from saving, restoring accurate records.",
-      "Imaged 65+ desktops and laptops, and deployed 10+ workstations and 120+ monitors including mounting, peripherals, and cable management.",
-      "Replaced and configured 10+ Cisco and Meraki switches and access points.",
-      "Completed a full technology asset audit across all 15 locations and built a dashboard for lifecycle and replacement planning.",
-      "Authored the city's cybersecurity incident response plan and its accompanying task matrix.",
-      "Facilitated a runbook initiative across the four-person infrastructure team, developing the template, running the sessions, and guiding senior staff through documenting their procedures.",
-      "Conducted an Adobe licensing survey leading to an estimated 20% reduction in annual Adobe spend, roughly $10,000 or more per year.",
-      "Configured Azure Repos and Key Vault for departmental adoption after presenting the proposal to management, and authored the Git workflow and onboarding documentation.",
-      "Relocated a department's technology during an office move, and supported Emergency Support Services setup during wildfire response."
-    ]
-  },
-  {
-    role: "Parts Driver & Warehouse Support",
-    company: "Lordco Auto Parts",
-    period: "June 2024 - Present",
-    bullets: [
-      "Handle inbound calls from customers and branches, recording order details and updating records in internal systems.",
-      "Operate point-of-sale and inventory systems for counter sales, returns, and parts lookups.",
-      "Run multi-stop delivery routes on schedule, coordinating with branches on changes and priority orders."
-    ]
-  },
-  {
-    role: "Cashier/Cook",
-    company: "Chopped Leaf",
-    period: "April 2022 - September 2024",
-    bullets: [
-      "Served customers and prepared menu items through high-volume lunch and dinner periods.",
-      "Operated the point-of-sale system for counter orders, processing cash and card transactions.",
-      "Maintained food safety and cleanliness standards."
-    ]
-  }
-];
-
-const selfDirected = [
-  {
-    role: "Personal Lab",
-    period: "2023 - Present",
-    bullets: [
-      "Run a permanent Proxmox VE environment with LXC containers, Docker Compose services, scheduled backups, and Tailscale remote access.",
-      "Built a Windows Server 2025 Hyper-V lab covering AD DS, organizational units, Group Policy, static IP addressing, DNS, and domain joins.",
-      "Provide ongoing informal first-line support for family and neighbours."
-    ]
-  }
-];
-
-const projects = [
-  {
-    name: "Sendline",
-    tags: ["Flutter", "Dart", "Supabase", "PostGIS"],
-    description: "Ski and snowboard tracking app built in Flutter, backed by Supabase and PostGIS with row-level security enforcing per-user access to run data.",
-    link: null
-  },
-  {
-    name: "Taskd",
-    tags: ["Java", "Maven", "JUnit", "Concurrency"],
-    description: "Distributed task scheduler with priority queues, retry handling, and real-time metrics, built around enterprise design patterns with 90%+ test coverage.",
-    link: "https://github.com/jwirick06/Taskd"
-  },
-  {
-    name: "SteadyPlan",
-    tags: ["PHP", "PostgreSQL", "REST API", "MVC"],
-    description: "Kanban project management app. Served as project lead, leading a team of 4 of my peers, and designed the PostgreSQL schema and the PHP REST API behind task reordering and team collaboration.",
-    link: "https://github.com/Rkovl/SteadyPlan"
-  },
-  {
-    name: "Bracket Bets",
-    tags: ["JavaScript", "GraphQL", "Async"],
-    description: "Client-side prediction game that consumes a third-party GraphQL API, parsing tournament brackets into a Top 8 guessing interface.",
-    link: "https://github.com/Rkovl/BracketBets"
-  }
-];
-
-const education = [
-  {
-    credential: "Diploma of Computer Information Systems",
-    school: "Okanagan College",
-    period: "September 2024 - August 2026",
-    badge: "Conferral pending",
-    notes: [
-      "Coursework complete and program requirements met. Conferral pending the graduation audit.",
-      "Dean's List in both years of the program."
-    ]
-  },
-  {
-    credential: "Bachelor of Computer Information Systems, Cybersecurity option",
-    school: "Okanagan College",
-    period: "Starting Fall 2026",
-    badge: "In progress",
-    notes: []
-  }
-];
+import {
+  summary,
+  skillGroups,
+  problemSolving,
+  experiences,
+  selfDirected,
+  projects,
+  education,
+  additional,
+} from '../data/resume';
 
 const headingClass = "font-mono text-xl font-bold text-zinc-50 border-b-2 border-zinc-800 pb-2 mb-4 print:text-black print:border-zinc-300";
 const bulletClass = "text-zinc-400 leading-relaxed print:text-zinc-700";
@@ -136,7 +24,7 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
   <style is:inline>
     @media print {
       @page {
-        margin: 0.45in 0.55in;
+        margin: 0.4in 0.5in;
         size: letter;
       }
 
@@ -145,25 +33,66 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
         print-color-adjust: exact !important;
       }
 
+      /* THE dial for how much fits on the page.
+         Every size in this layout comes from a Tailwind utility, and those
+         are all in rem, which resolves against the root font size, not the
+         body's. So scaling `html` scales type, padding, margins and gaps
+         together and the whole resume shrinks proportionally. Setting this
+         on `body` instead does almost nothing, because rem ignores it.
+         Raise it if the PDF has room left at the bottom; lower it if the
+         resume spills onto a second page. */
+      html {
+        font-size: 8.5pt !important;
+      }
+
       /* The site is dark by default. Force a white page for print. */
       html, body {
         background-color: #ffffff !important;
         color: #18181b !important;
       }
 
+      body {
+        font-size: 1rem !important;
+        line-height: 1.35 !important;
+      }
+
       header, footer { display: none !important; }
       main { margin: 0 !important; padding: 0 !important; }
-
-      body {
-        font-size: 10.5pt !important;
-        line-height: 1.4 !important;
-      }
 
       .max-w-4xl {
         max-width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
       }
+
+      /* 2px reads heavy once the type is this small. */
+      h2 {
+        border-bottom-width: 1px !important;
+      }
+
+      .leading-relaxed {
+        line-height: 1.4 !important;
+      }
+
+      /* A resume wants a tighter vertical rhythm than a web page. These are
+         in rem, so they still scale with the root dial above; they only
+         change the proportions, not the overall size. */
+      .space-y-10 > * + * { margin-top: 0.85rem !important; }
+      .space-y-8  > * + * { margin-top: 0.6rem !important; }
+      .space-y-6  > * + * { margin-top: 0.5rem !important; }
+      .space-y-4  > * + * { margin-top: 0.4rem !important; }
+      .resume-bullets > * + * { margin-top: 0.12rem !important; }
+
+      .mb-12 { margin-bottom: 0.7rem !important; }
+      .pb-8  { padding-bottom: 0.45rem !important; }
+      .mb-6  { margin-bottom: 0.45rem !important; }
+      .mb-4  { margin-bottom: 0.4rem !important; }
+      .mb-3  { margin-bottom: 0.3rem !important; }
+      .mb-2  { margin-bottom: 0.22rem !important; }
+      .mb-1  { margin-bottom: 0.12rem !important; }
+
+      h1 { margin-bottom: 0.12rem !important; line-height: 1.15 !important; }
+      h2 { padding-bottom: 0.2rem !important; }
 
       section {
         page-break-inside: avoid;
@@ -200,112 +129,6 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
         padding-left: 1.1rem !important;
         margin: 0 !important;
       }
-
-      .resume-bullets > * + * {
-        margin-top: 0.15rem !important;
-      }
-
-      .space-y-10 > * + * {
-        margin-top: 1rem !important;
-      }
-
-      .space-y-8 > * + * {
-        margin-top: 0.65rem !important;
-      }
-
-      .space-y-6 > * + * {
-        margin-top: 0.55rem !important;
-      }
-
-      .space-y-4 > * + * {
-        margin-top: 0.45rem !important;
-      }
-
-      .gap-8 {
-        gap: 1.2rem !important;
-      }
-
-      .gap-4 {
-        gap: 0.5rem !important;
-      }
-
-      .mb-12 {
-        margin-bottom: 0.85rem !important;
-      }
-
-      .pb-8 {
-        padding-bottom: 0.6rem !important;
-      }
-
-      .mb-4 {
-        margin-bottom: 0.6rem !important;
-      }
-
-      .mb-6 {
-        margin-bottom: 0.6rem !important;
-      }
-
-      .mb-3 {
-        margin-bottom: 0.4rem !important;
-      }
-
-      .mb-2 {
-        margin-bottom: 0.3rem !important;
-      }
-
-      .mb-1 {
-        margin-bottom: 0.2rem !important;
-      }
-
-      h1 {
-        font-size: 1.75rem !important;
-        margin-bottom: 0.25rem !important;
-        line-height: 1.2 !important;
-      }
-
-      p.text-xl {
-        font-size: 1.05rem !important;
-        margin-bottom: 0.6rem !important;
-        line-height: 1.3 !important;
-      }
-
-      h2.text-xl {
-        font-size: 1.1rem !important;
-        padding-bottom: 0.4rem !important;
-        margin-bottom: 0.6rem !important;
-      }
-
-      h3 {
-        font-size: 1rem !important;
-      }
-
-      .flex-wrap.gap-2 {
-        gap: 0.3rem !important;
-        row-gap: 0.3rem !important;
-      }
-
-      .px-3.py-1 {
-        padding: 0.2rem 0.5rem !important;
-        font-size: 0.8rem !important;
-        line-height: 1.3 !important;
-      }
-
-      .leading-relaxed {
-        line-height: 1.45 !important;
-      }
-
-      .text-sm {
-        font-size: 0.85rem !important;
-      }
-
-      .flex.flex-wrap.gap-4 {
-        gap: 0.85rem !important;
-      }
-
-      .w-4.h-4 {
-        width: 0.95rem !important;
-        height: 0.95rem !important;
-      }
     }
   </style>
 
@@ -327,13 +150,13 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
       <h1 class="font-mono text-4xl font-bold text-zinc-50 mb-2 print:text-black">Jonathan Wirick</h1>
       <p class="text-xl text-zinc-400 mb-6 print:text-zinc-700">CIS Student | Service Desk &amp; Infrastructure Support</p>
 
-      <div class="flex flex-wrap gap-4 text-sm text-zinc-500 font-mono print:text-zinc-600">
+      <div class="flex flex-wrap gap-4 text-sm text-muted font-mono print:text-zinc-600">
         <div class="flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           West Kelowna, BC
         </div>
         <div class="flex items-center gap-1">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           jwirick06@gmail.com
         </div>
         <div class="flex items-center gap-1">
@@ -358,14 +181,15 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
               <h3 class="font-mono font-bold text-zinc-100 mb-2 print:text-black">
                 <span class="text-accent print:text-accent-700">-</span> {group.label}
               </h3>
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2 print:hidden">
                 {group.items.map((item) => (
                   <span class={chipClass}>{item}</span>
                 ))}
               </div>
+              <p class="hidden print:block print:text-zinc-700">{group.items.join(', ')}</p>
             </div>
           ))}
-          <p class={bulletClass}>{problemSolving}</p>
+          <p class:list={[bulletClass, "print:hidden"]}>{problemSolving}</p>
         </div>
       </section>
 
@@ -392,12 +216,12 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
               <div class="flex-1 min-w-0">
                 <div class="flex justify-between items-baseline gap-3 mb-1">
                   <h3 class="font-bold text-zinc-100 print:text-black">{job.role}</h3>
-                  <span class="text-sm text-zinc-500 font-mono flex-shrink-0 print:text-zinc-600">{job.period}</span>
+                  <span class="text-sm text-muted font-mono flex-shrink-0 print:text-zinc-600">{job.period}</span>
                 </div>
                 <p class="text-zinc-300 font-medium mb-2 print:text-zinc-700">{job.company}</p>
                 <ul class="resume-bullets list-disc pl-5 marker:text-zinc-600 space-y-1.5 print:marker:text-zinc-500">
-                  {job.bullets.map((bullet) => (
-                    <li class={bulletClass}>{bullet}</li>
+                  {job.bullets.map((bullet, i) => (
+                    <li class:list={[bulletClass, i >= job.printBullets && 'print:hidden']}>{bullet}</li>
                   ))}
                 </ul>
               </div>
@@ -413,11 +237,11 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
             <div>
               <div class="flex justify-between items-baseline gap-3 mb-2">
                 <h3 class="font-bold text-zinc-100 print:text-black">{entry.role}</h3>
-                <span class="text-sm text-zinc-500 font-mono flex-shrink-0 print:text-zinc-600">{entry.period}</span>
+                <span class="text-sm text-muted font-mono flex-shrink-0 print:text-zinc-600">{entry.period}</span>
               </div>
               <ul class="resume-bullets list-disc pl-5 marker:text-zinc-600 space-y-1.5 print:marker:text-zinc-500">
-                {entry.bullets.map((bullet) => (
-                  <li class={bulletClass}>{bullet}</li>
+                {entry.bullets.map((bullet, i) => (
+                  <li class:list={[bulletClass, i >= entry.printBullets && 'print:hidden']}>{bullet}</li>
                 ))}
               </ul>
             </div>
@@ -427,11 +251,12 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
             <h3 class="font-mono font-bold text-zinc-100 mb-3 print:text-black">
               <span class="text-accent print:text-accent-700">-</span> Projects
             </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 print:grid-cols-1 print:gap-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 print:grid-cols-2 print:gap-x-6 print:gap-y-1">
               {projects.map((project) => (
-                <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-4 print:bg-white print:border-0 print:p-0">
-                  <div class="flex items-baseline justify-between gap-2 mb-2">
-                    <h4 class="font-mono font-bold text-zinc-50 print:text-black">{project.name}</h4>
+                <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-4 hover:border-accent-700/60 transition-colors print:bg-white print:border-0 print:p-0">
+                  <div class="flex items-baseline justify-between gap-2 mb-2 print:block print:mb-0">
+                    <h4 class="font-mono font-bold text-zinc-50 print:text-black print:inline">{project.name}</h4>
+                    <span class="hidden print:inline print:text-zinc-700"> - {project.tags.join(', ')}</span>
                     {project.link && (
                       <a
                         href={project.link}
@@ -443,14 +268,14 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
                       </a>
                     )}
                   </div>
-                  <div class="flex flex-wrap gap-2 mb-2">
+                  <div class="flex flex-wrap gap-2 mb-2 print:hidden">
                     {project.tags.map((tag) => (
                       <span class="px-2 py-1 bg-zinc-950 border border-zinc-800 text-zinc-400 font-mono text-xs rounded print:bg-white print:border-zinc-300 print:text-zinc-800">
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <p class="text-zinc-400 text-sm leading-relaxed print:text-zinc-700">{project.description}</p>
+                  <p class="text-zinc-400 text-sm leading-relaxed print:hidden">{project.description}</p>
                 </div>
               ))}
             </div>
@@ -466,7 +291,7 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
               <h3 class="font-bold text-zinc-100 print:text-black">{entry.credential}</h3>
               <p class="text-zinc-400 print:text-zinc-700">{entry.school}</p>
               <div class="flex justify-between items-center gap-3 mt-1 mb-2">
-                <span class="text-sm text-zinc-500 font-mono print:text-zinc-600">{entry.period}</span>
+                <span class="text-sm text-muted font-mono print:text-zinc-600">{entry.period}</span>
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium font-mono bg-accent-500/10 border border-accent-700/40 text-accent flex-shrink-0 print:bg-white print:border-accent-300 print:text-accent-700">
                   {entry.badge}
                 </span>
@@ -485,7 +310,7 @@ const chipClass = "px-3 py-1 bg-zinc-900 border border-zinc-800 text-zinc-300 ro
 
       <section>
         <h2 class={headingClass}><span class="text-accent">##</span> Additional</h2>
-        <p class={bulletClass}>Valid Class 5 driver's licence. Able to obtain a Police Information Check.</p>
+        <p class={bulletClass}>{additional}</p>
       </section>
 
       <section class="print:hidden">

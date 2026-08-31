@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import headshot from '../assets/headshot.jpg';
+import CommandPalette from '../components/CommandPalette.astro';
 
 interface Props {
   title: string;
@@ -70,17 +71,34 @@ const navItems = [
           <span class="text-accent">~/</span><span class="hidden sm:inline">jonathan-wirick</span><span class="sm:hidden">jw</span>
         </a>
 
-        <nav class="flex gap-4 sm:gap-8 font-mono text-sm" aria-label="Main navigation">
-          {navItems.map((item) => (
-            <a
-              href={item.href}
-              class={`text-zinc-400 hover:text-accent transition-colors ${item.href === '/' ? 'hidden sm:inline' : ''}`}
-              aria-current={Astro.url.pathname === item.href ? 'page' : undefined}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div class="flex items-center gap-4 sm:gap-6">
+          <nav class="flex gap-4 sm:gap-8 font-mono text-sm" aria-label="Main navigation">
+            {navItems.map((item) => {
+              const isActive = Astro.url.pathname === item.href;
+              return (
+                <a
+                  href={item.href}
+                  class={`border-b-2 pb-0.5 transition-colors ${isActive ? 'text-accent border-accent' : 'text-zinc-400 border-transparent hover:text-accent'} ${item.href === '/' ? 'hidden sm:inline' : ''}`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </nav>
+
+          <button
+            type="button"
+            data-cmdk-open
+            aria-label="Open command palette"
+            class="inline-flex items-center gap-1.5 rounded border border-zinc-800 bg-zinc-900 px-2 py-1.5 font-mono text-xs text-zinc-400 hover:border-accent-700/60 hover:text-accent transition-colors"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" /><path stroke-linecap="round" d="m20 20-3.5-3.5" />
+            </svg>
+            <kbd data-cmdk-kbd class="hidden sm:inline not-italic">Ctrl K</kbd>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -92,9 +110,14 @@ const navItems = [
     <!-- FOOTER -->
     <footer class="bg-zinc-950 border-t border-zinc-800 mt-12">
       <div class="max-w-5xl mx-auto px-4 py-8 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="font-mono text-xs text-zinc-500">
-          <span class="text-accent">//</span> © {new Date().getFullYear()} Jonathan Wirick, built with Astro &amp; Tailwind
-        </p>
+        <div class="flex flex-col items-center md:items-start gap-1">
+          <p class="font-mono text-xs text-muted">
+            <span class="text-accent">//</span> © {new Date().getFullYear()} Jonathan Wirick, built with Astro &amp; Tailwind
+          </p>
+          <p class="font-mono text-xs text-muted">
+            <span class="text-accent">$</span> curl -s jwirick.dev/cv
+          </p>
+        </div>
         <div class="flex gap-6 font-mono text-sm">
           <a href="https://github.com/jwirick06" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-accent transition-colors">
             [GitHub]
@@ -108,6 +131,9 @@ const navItems = [
         </div>
       </div>
     </footer>
+
+
+    <CommandPalette />
 
   </body>
 </html>
